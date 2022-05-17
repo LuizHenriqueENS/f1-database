@@ -1,0 +1,23 @@
+﻿<Window x:Class="F1.Excluir"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:F1"
+        mc:Ignorable="d"
+        Title="Excluir" Height="450" Width="800">
+    <Grid>
+        <ListView Margin="10" Name="pilotos">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nome" Width="180" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Local de Nascimento" Width="auto" DisplayMemberBinding="{Binding local}" />
+                    <GridViewColumn Header="País da Lincença" Width="auto" DisplayMemberBinding="{Binding licenca}" />
+                    <GridViewColumn Header="Dt. de Nascimento" Width="auto" DisplayMemberBinding="{Binding nascimento}" />
+                    <GridViewColumn Header="Dt. de Falecimento" Width="auto" DisplayMemberBinding="{Binding falecimento}" />
+                    <GridViewColumn Header="Chave Identificação" Width="auto" DisplayMemberBinding="{Binding chave}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
