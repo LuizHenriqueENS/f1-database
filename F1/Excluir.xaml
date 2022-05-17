@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:F1"
         mc:Ignorable="d"
-        Title="Excluir" Height="450" Width="800">
+        Title="Tabela temporária" Height="450" Width="1000">
     <Grid>
         <ListView Margin="10" Name="pilotos">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nome" Width="180" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Local de Nascimento" Width="auto" DisplayMemberBinding="{Binding local}" />
-                    <GridViewColumn Header="País da Lincença" Width="auto" DisplayMemberBinding="{Binding licenca}" />
-                    <GridViewColumn Header="Dt. de Nascimento" Width="auto" DisplayMemberBinding="{Binding nascimento}" />
-                    <GridViewColumn Header="Dt. de Falecimento" Width="auto" DisplayMemberBinding="{Binding falecimento}" />
-                    <GridViewColumn Header="Chave Identificação" Width="auto" DisplayMemberBinding="{Binding chave}" />
+                    <GridViewColumn Header="Nome" Width="auto"  DisplayMemberBinding="{Binding Nome}"/>
+                    <GridViewColumn Header="Local de Nascimento" Width="auto" DisplayMemberBinding="{Binding LocalDoNascimento}"/>
+                    <GridViewColumn Header="País da Lincença" Width="auto" DisplayMemberBinding="{Binding PaisDeLicenca}"/>
+                    <GridViewColumn Header="Dt. de Nascimento" Width="auto" DisplayMemberBinding="{Binding DataDoNascimento}"/>
+                    <GridViewColumn Header="Dt. de Falecimento" Width="auto" DisplayMemberBinding="{Binding DataDeFalecimento}"/>
+                    <GridViewColumn Header="Chave Identificação" Width="auto" DisplayMemberBinding="{Binding ChaveIdentificacao}"/>
                 </GridView>
             </ListView.View>
         </ListView>

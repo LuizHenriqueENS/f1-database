@@ -26,13 +26,13 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Digite as informações necessárias para cadastrar um piloto" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="25" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" FontFamily="Lucida Sans"/>
         <TextBlock Text="Nome Completo: " Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_nome" Grid.Row="2" Text="Celino Peres dos Santos" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" GotFocus="CampoSelecionado" LostFocus="CampoDesselecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
+        <TextBox x:Name="campo_nome" Grid.Row="2" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" GotFocus="CampoSelecionado" LostFocus="CampoDesselecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
 
         <TextBlock Text="Local do Nascimento: " Grid.Row="3" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_nascimento" Grid.Row="4" Text="Brasil" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
+        <TextBox x:Name="campo_nascimento" Grid.Row="4" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
 
         <TextBlock Text="País de Licença: " Grid.Row="5" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_licenca" Grid.Row="6" Text="Brasil" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
+        <TextBox x:Name="campo_licenca" Grid.Row="6" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
 
         <TextBlock Text="Data de Nascimento" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="5,20,0,3" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
         <DatePicker x:Name="campo_dataNascimento" HorizontalAlignment="Right" Grid.Row="7" VerticalAlignment="Bottom" MinWidth="150" Background="#00000000" FontStyle="Normal" MinHeight="25" BorderThickness="0.5,0.5,0.5,0.5"/>
@@ -40,7 +40,9 @@
         <CheckBox Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Bottom" BorderThickness="2,2,2,2" Checked="FalecidoCheck" Unchecked="FalecidoUnchecked">
             <TextBlock Text="Falecido?" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FlowDirection="LeftToRight" FontSize="15"/>
         </CheckBox>
-        <TextBox  Grid.Row="8" x:Name="campo_dataFalecimento" HorizontalAlignment="Right" MinWidth="150" VerticalAlignment="Bottom" TextAlignment="Center" IsEnabled="False" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" FontStyle="Italic"/>
+        <DatePicker IsEnabled="False" x:Name="campo_dataFalecimento" HorizontalAlignment="Right" Grid.Row="8" VerticalAlignment="Bottom" MinWidth="150" Background="#00000000" FontStyle="Normal" MinHeight="25" BorderThickness="0.5,0.5,0.5,0.5"/>
+
+
         <Button Grid.ColumnSpan="2" Grid.Row="9" Content="Cadastrar" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Padding="5,5,5,5" FontStyle="Normal" FontWeight="Bold" Click="AbrirPopUp" />
 
 

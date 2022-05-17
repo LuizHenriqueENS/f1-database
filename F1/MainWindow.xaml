@@ -13,13 +13,13 @@
                 <GradientStop Color="#FF872213" Offset="0"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Height="130" Width="230">
+        <Button IsEnabled="False" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Height="130" Width="230">
             <TextBlock Text="Cadastrar Temporadas" FontSize="25" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" TextWrapping="Wrap"/>
         </Button>
         <Button HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="130" Width="230" Click="TelaCadastroDePilotos">
             <TextBlock Text="Cadastrar Pilotos" TextWrapping="Wrap" TextAlignment="Center" FontSize="25" FontWeight="Normal" FontStyle="Italic"/>
         </Button>
-        <Button HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" Height="130" Width="230">
+        <Button IsEnabled="False" HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" Height="130" Width="230">
             <TextBlock Text="Cadastrar Equipes/Construtores e Motores" FontSize="25" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" TextWrapping="Wrap"/>
         </Button>
         <Button x:Name="btn_quit" Margin="200,420,0,0" Width="50" Height="50" BorderThickness="0,0,0,0" Click="QuitApp" >

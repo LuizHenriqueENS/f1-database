@@ -8,8 +8,13 @@ namespace F1 {
 
         private static SQLiteConnection? conexao;
 
+        private static string caminho = System.Environment.CurrentDirectory;
+        private static string nomeBanco = "banco_pilotos.db";
+        private static string caminhoBanco = caminho+@"\banco\";
+        
+
         private static SQLiteConnection ConexaoBanco() {
-            conexao = new SQLiteConnection("Data Source = C:\\Users\\Luiz\\source\\repos\\F1_Database\\F1\\F1\\banco\\banco_pilotos.db");
+            conexao = new SQLiteConnection("Data Source ="+caminhoBanco + nomeBanco);
             conexao.Open();
             return conexao;
         }

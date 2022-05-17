@@ -1,4 +1,5 @@
 ﻿using System; // EventArgs
+using System.Collections.Generic;
 using System.ComponentModel; // CancelEventArgs
 using System.Data;
 using System.Linq;
@@ -11,13 +12,6 @@ namespace F1 {
     /// Interaction logic for CadastroPilotos.xaml
     /// </summary>
     public partial class CadastroPilotos : Window {
-
-        string nomePadrao = "Celino Peres dos Santos";
-        string localPadrao = "Brasil";
-        string licencaPadrao = "Brasil";
-        string dataNascimentoPadrao = "01/01/1980";
-        string dataFalecimentoPadrao = "02/02/2010";
-
         public CadastroPilotos() {
             InitializeComponent();
         }
@@ -86,7 +80,8 @@ namespace F1 {
                 if (result == MessageBoxResult.Yes) {
                     AdicionarPilotoAoBanco();
 
-                    Excluir excluir= new();
+                    
+                    Excluir excluir = new();
                     excluir.Show();
                 }
             }
@@ -104,14 +99,12 @@ namespace F1 {
         }
 
         private void AdicionarPilotoAoBanco() {
-            Piloto p;
+            Piloto p = new();
             if (campo_dataFalecimento.Text.Trim() == "") {
-                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text).Date, campo_licenca.Text);
-
-                Console.WriteLine(p.DataDoFalecimento.Ticks);
+                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text).Date, campo_licenca.Text, p.Identificacao());
             }
             else {
-                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text), DateTime.Parse(campo_dataFalecimento.Text).Date, campo_licenca.Text);
+                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text), DateTime.Parse(campo_dataFalecimento.Text).Date, campo_licenca.Text, p.Identificacao());
             }
 
             Banco.AdicionarPiloto(p);
