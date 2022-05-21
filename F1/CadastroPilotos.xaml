@@ -6,45 +6,68 @@
         xmlns:local="clr-namespace:F1"
         mc:Ignorable="d"
         Title="CadastroPilotos" Height="640" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid  VerticalAlignment="Top" HorizontalAlignment="Left" Height="520" Width="440">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <!--#region TextBlock -->
+        <Style x:Key="Textos Cadastro de Piloto" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontWeight" Value="UltraBlack" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            
+
+        </Style>
+        <!--#endregion-->
+        <!--#region TextBox -->
+        <Style x:Key="TextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="310" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <!--#endregion-->
+        </Style>
+    </Window.Resources>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-
+            <RowDefinition Height="175"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Digite as informações necessárias para cadastrar um piloto" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="25" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" FontFamily="Lucida Sans"/>
-        <TextBlock Text="Nome Completo: " Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_nome" Grid.Row="2" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" GotFocus="CampoSelecionado" LostFocus="CampoDesselecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Digite as informações do piloto para cadastrá-lo" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="50" TextWrapping="Wrap" FontWeight="ExtraBlack" TextAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="Nome completo*" Style="{StaticResource Textos Cadastro de Piloto}" />
+        <TextBox Grid.Row="1" Style="{StaticResource TextBox}"/>
+        <TextBlock Grid.Row="2" Text="Conhecido por*" Style="{StaticResource Textos Cadastro de Piloto}" />
+        <TextBox Grid.Row="2" Style="{StaticResource TextBox}"/>
+        <TextBlock Grid.Row="3" Text="Data de nascimento*" Style="{StaticResource Textos Cadastro de Piloto}" />
+        <TextBox Grid.Row="3" Style="{StaticResource TextBox}"/>
+        <TextBlock Grid.Row="4" Text="País de origem*" Style="{StaticResource Textos Cadastro de Piloto}" />
+        <TextBox Grid.Row="4" Style="{StaticResource TextBox}"/>
+        <TextBlock Grid.Row="5" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" />
+        <TextBox Grid.Row="5" Style="{StaticResource TextBox}"/>
+        <CheckBox Content="Falecido?" Grid.Row="1" Grid.Column="1" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Checked="Falecido" Unchecked="FalecidoUnchecked"/>
+        <TextBlock x:Name="txt_dataObito" Grid.Row="2" Grid.Column="1" Text="Data do óbito*" Opacity="0.2" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0"/>
+        <TextBox x:Name="input_dataObito" Grid.Row="2" Grid.Column="1"  Style="{StaticResource TextBox}" Margin="0,0,25,0" IsEnabled="False"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="txt_pais" Text="País*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="input_pais"  Style="{StaticResource TextBox}" Margin="0,0,25,0" IsEnabled="False"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" x:Name="txt_cidade" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="input_cidade" Style="{StaticResource TextBox}" Margin="0,0,25,0" IsEnabled="False"/>
 
-        <TextBlock Text="Local do Nascimento: " Grid.Row="3" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_nascimento" Grid.Row="4" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
-
-        <TextBlock Text="País de Licença: " Grid.Row="5" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="campo_licenca" Grid.Row="6" HorizontalAlignment="Center" MinWidth="300" VerticalAlignment="Top" Grid.ColumnSpan="2" Opacity="0.35" LostFocus="CampoDesselecionado" GotFocus="CampoSelecionado" FontSize="18" TextAlignment="Center" FontStyle="Italic"/>
-
-        <TextBlock Text="Data de Nascimento" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="5,20,0,3" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
-        <DatePicker x:Name="campo_dataNascimento" HorizontalAlignment="Right" Grid.Row="7" VerticalAlignment="Bottom" MinWidth="150" Background="#00000000" FontStyle="Normal" MinHeight="25" BorderThickness="0.5,0.5,0.5,0.5"/>
-
-        <CheckBox Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Bottom" BorderThickness="2,2,2,2" Checked="FalecidoCheck" Unchecked="FalecidoUnchecked">
-            <TextBlock Text="Falecido?" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FlowDirection="LeftToRight" FontSize="15"/>
-        </CheckBox>
-        <DatePicker IsEnabled="False" x:Name="campo_dataFalecimento" HorizontalAlignment="Right" Grid.Row="8" VerticalAlignment="Bottom" MinWidth="150" Background="#00000000" FontStyle="Normal" MinHeight="25" BorderThickness="0.5,0.5,0.5,0.5"/>
-
-
-        <Button Grid.ColumnSpan="2" Grid.Row="9" Content="Cadastrar" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Padding="5,5,5,5" FontStyle="Normal" FontWeight="Bold" Click="AbrirPopUp" />
-
-
+        <Button Content="Cadastrar" FontSize="45" FontWeight="Black" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="300" Margin="0,5,0,5"/>
+        <TextBlock Text="* Campos obrigatórios" Grid.Row="7" Grid.RowSpan="3" FontSize="20" Margin="0,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        
+        
     </Grid>
 </Window>

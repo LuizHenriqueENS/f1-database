@@ -5,10 +5,11 @@ using System.Windows; // window
 using System.Windows.Controls;
 
 namespace F1 {
-    /// <summary>
-    /// Interaction logic for CadastroPilotos.xaml
-    /// </summary>
     public partial class CadastroPilotos : Window {
+        
+        bool falecido = false;
+
+
         public CadastroPilotos() {
             InitializeComponent();
         }
@@ -26,25 +27,11 @@ namespace F1 {
             base.OnClosing(e);
         }
 
-        private void Gerenciador_Input(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-
-        }
-
-        private void CampoSelecionado(object sender, RoutedEventArgs e) {
-
-        }
 
         private void CampoDesselecionado(object sender, RoutedEventArgs e) {
             TextBox? txt = sender as TextBox;
         }
 
-        private void FalecidoCheck(object sender, RoutedEventArgs e) {
-            campo_dataFalecimento.IsEnabled = true;
-        }
-
-        private void FalecidoUnchecked(object sender, RoutedEventArgs e) {
-            campo_dataFalecimento.IsEnabled = false;
-        }
 
         private static readonly Regex _regexTXT = new Regex("[a-zA-Z]+"); //regex that matches disallowed text
         private static readonly Regex _regexNUMBERS = new Regex("[^0-9.-]+"); //regex that matches disallowed text
@@ -57,30 +44,30 @@ namespace F1 {
         }
 
 
-        private void AbrirPopUp(object sender, RoutedEventArgs e) {
-            bool tudoOK = true;
-            if (IsTextAllowed(campo_nome.Text)) {
-                PopUp("O campo NOME possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-                tudoOK = false;
-            }
-            if (IsTextAllowed(campo_nascimento.Text)) {
-                PopUp("O campo LOCAL DO NASCIMENTO possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-                tudoOK = false;
-            }
-            if (IsTextAllowed(campo_licenca.Text)) {
-                PopUp("O campo País de Licença possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-                tudoOK = false;
-            }
+        //private void AbrirPopUp(object sender, RoutedEventArgs e) {
+        //    bool tudoOK = true;
+        //    if (IsTextAllowed(campo_nome.Text)) {
+        //        PopUp("O campo NOME possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        tudoOK = false;
+        //    }
+        //    if (IsTextAllowed(campo_nascimento.Text)) {
+        //        PopUp("O campo LOCAL DO NASCIMENTO possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        tudoOK = false;
+        //    }
+        //    if (IsTextAllowed(campo_licenca.Text)) {
+        //        PopUp("O campo País de Licença possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        tudoOK = false;
+        //    }
 
-            if (tudoOK) {
-                MessageBoxResult result = PopUp($"Você deseja cadastrar o piloto '{campo_nome.Text}'?", "Continuar?", MessageBoxButton.YesNo, MessageBoxImage.None);
-                if (result == MessageBoxResult.Yes) {
-                    AdicionarPilotoAoBanco();
-                }
-            }
+        //    if (tudoOK) {
+        //        MessageBoxResult result = PopUp($"Você deseja cadastrar o piloto '{campo_nome.Text}'?", "Continuar?", MessageBoxButton.YesNo, MessageBoxImage.None);
+        //        if (result == MessageBoxResult.Yes) {
+        //            AdicionarPilotoAoBanco();
+        //        }
+        //    }
 
 
-        }
+        //}
 
         private MessageBoxResult PopUp(string messageBoxText, string caption, MessageBoxButton msgBtn, MessageBoxImage msgImg) {
             MessageBoxButton button = msgBtn;
@@ -91,17 +78,41 @@ namespace F1 {
             return result;
         }
 
-        private void AdicionarPilotoAoBanco() {
-            Piloto p = new();
-            if (campo_dataFalecimento.Text.Trim() == "") {
-                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text).Date, campo_licenca.Text, p.Identificacao());
-            }
-            else {
-                p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text), DateTime.Parse(campo_dataFalecimento.Text).Date, campo_licenca.Text, p.Identificacao());
-            }
+        private void Falecido(object sender, RoutedEventArgs e) {
+            txt_pais.Opacity = 1;
+            txt_dataObito.Opacity = 1;
+            txt_cidade.Opacity = 1;
 
-            Banco.AdicionarPiloto(p);
+            input_pais.IsEnabled = true;
+            input_dataObito.IsEnabled = true;
+            input_cidade.IsEnabled = true;
+
+            falecido = true;
         }
+
+        private void FalecidoUnchecked(object sender, RoutedEventArgs e) {
+            txt_pais.Opacity = 0.2;
+            txt_dataObito.Opacity = 0.2;
+            txt_cidade.Opacity = 0.2;
+
+            input_pais.IsEnabled = false;
+            input_dataObito.IsEnabled = false;
+            input_cidade.IsEnabled = false;
+
+            falecido = false;
+        }
+
+        //private void AdicionarPilotoAoBanco() {
+        //    Piloto p = new();
+        //    if (campo_dataFalecimento.Text.Trim() == "") {
+        //        p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text).Date, campo_licenca.Text, p.Identificacao());
+        //    }
+        //    else {
+        //        p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text), DateTime.Parse(campo_dataFalecimento.Text).Date, campo_licenca.Text, p.Identificacao());
+        //    }
+
+        //    Banco.AdicionarPiloto(p);
+        //}
     }
 
 }

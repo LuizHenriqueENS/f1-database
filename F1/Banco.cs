@@ -2,28 +2,25 @@
 using System.Data;
 using System.Data.SQLite;
 
-
 namespace F1 {
     internal class Banco {
 
-        private static SQLiteConnection? conexao;
+        private static SQLiteConnection conexao;
 
-        private static string caminho = System.Environment.CurrentDirectory;
+        private static string caminho = Environment.CurrentDirectory;
         private static string nomeBanco = "banco_pilotos.db";
         private static string caminhoBanco = caminho+@"\banco\";
         
 
         private static SQLiteConnection ConexaoBanco() {
-            conexao = new SQLiteConnection("Data Source ="+caminhoBanco + nomeBanco);
+            conexao = new SQLiteConnection(@"Data Source =" + caminhoBanco + nomeBanco);
             conexao.Open();
             return conexao;
         }
 
         public static DataTable ObterTodosPilotos() {
             SQLiteDataAdapter? da = null;
-
             DataTable dt = new DataTable();
-
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
                     cmd.CommandText = "SELECT * FROM tb_pilotos";
@@ -33,9 +30,12 @@ namespace F1 {
                 }
             }
             catch (Exception ex) {
-
                 throw ex;
             }
+        }
+
+        public static void Caminho() {
+            Console.WriteLine(caminhoBanco + nomeBanco);
         }
 
         public static void AdicionarPiloto(Piloto piloto) {

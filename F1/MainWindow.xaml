@@ -31,22 +31,7 @@
 			<Setter Property="Cursor" Value="Arrow" />
 		</Style>
 		<!--#endregion-->
-		<!--#region Cadastro de Piloto - TEXTO -->
-		<Style x:Key="Textos Cadastro de Piloto" TargetType="TextBlock">
-			<Setter Property="VerticalAlignment" Value="Top" />
-			<Setter Property="FontSize" Value="25" />
-			<Setter Property="Height" Value="50" />
-			<Setter Property="HorizontalAlignment" Value="Center" />
-		</Style>
-		<!--#endregion-->
-		<Style x:Key="TextBox" TargetType="TextBox">
-			<Setter Property="FontSize" Value="30" />
-			<Setter Property="VerticalAlignment" Value="Bottom" />
-			<Setter Property="Height" Value="50" />
-			<Setter Property="Width" Value="350" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-			<Setter Property="HorizontalContentAlignment" Value="Center" />
-		</Style>
+
 	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -79,7 +64,7 @@
 			<Button Style="{StaticResource Botoes}" Margin="25, 75, 0, 0" Click="TelaCadastroDePilotos">
 				<TextBox Text="PILOTOS" Style="{StaticResource Textos}" />
 			</Button>
-			<Button Style="{StaticResource Botoes}" Margin="25, 200, 0, 0">
+			<Button Style="{StaticResource Botoes}" Margin="25, 200, 0, 0" Click="AddPaises">
 				<TextBox Text="EQUIPES" Style="{StaticResource Textos}" />
 			</Button>
 			<Button Style="{StaticResource Botoes}" Margin="25, 325, 0, 0">
@@ -91,6 +76,7 @@
 				</Button.Background>
 			</Button>
 			<!--#endregion-->
-		</Grid>
+            <TextBlock x:Name="txtTeste" Text="Teste"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Grid>
 	</Grid>
 </Window>
