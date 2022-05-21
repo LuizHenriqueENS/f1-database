@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:F1"
         mc:Ignorable="d"
-        Title="CadastroPilotos" Height="520" Width="440" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="CadastroPilotos" Height="640" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid  VerticalAlignment="Top" HorizontalAlignment="Left" Height="520" Width="440">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />

@@ -1,41 +1,96 @@
-﻿<Window x:Class="F1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:F1"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="250" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF2D0F0F" Offset="1"/>
-                <GradientStop Color="#FF872213" Offset="0"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Button IsEnabled="False" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Height="130" Width="230">
-            <TextBlock Text="Cadastrar Temporadas" FontSize="25" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" TextWrapping="Wrap"/>
-        </Button>
-        <Button HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="130" Width="230" Click="TelaCadastroDePilotos">
-            <TextBlock Text="Cadastrar Pilotos" TextWrapping="Wrap" TextAlignment="Center" FontSize="25" FontWeight="Normal" FontStyle="Italic"/>
-        </Button>
-        <Button IsEnabled="False" HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" Height="130" Width="230">
-            <TextBlock Text="Cadastrar Equipes/Construtores e Motores" FontSize="25" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" TextWrapping="Wrap"/>
-        </Button>
-        <Button x:Name="btn_quit" Margin="200,420,0,0" Width="50" Height="50" BorderThickness="0,0,0,0" Click="QuitApp" >
-            <Button.Style>
-                <Style>
-                    <Style.Triggers>
-                        <Trigger Property="Button.IsMouseOver" Value="True">
-                            <Setter Property="Button.Opacity" Value="0"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="/power_off.png"/>
-            </Button.Background>
-        </Button>
-
-    </Grid>
+﻿<Window x:Class="F1.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:F1" mc:Ignorable="d" Title="MainWindow" Height="640" Width="1080" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+	<Window.Resources>
+		<!--#region Estilo dos Botões -->
+		<Style x:Key="Botoes" TargetType="Button">
+			<Setter Property="Height" Value="100" />
+			<Setter Property="Width" Value="250" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Background" Value="{x:Null}" />
+			<Setter Property="BorderThickness" Value="2,2,2,2" />
+			<Setter Property="BorderBrush" Value="White" />
+		</Style>
+		<!--#endregion-->
+		<!--#region Estilo dos TextBox -->
+		<Style x:Key="Textos" TargetType="TextBox">
+			<Setter Property="Background" Value="{x:Null}" />
+			<Setter Property="BorderBrush" Value="{x:Null}" />
+			<Setter Property="Width" Value="250" />
+			<Setter Property="Height" Value="100" />
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="FontStyle" Value="Normal" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="TextAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontFamily" Value="Arial" />
+			<Setter Property="BorderThickness" Value="0,0,0,0" />
+			<Setter Property="Focusable" Value="False" />
+			<Setter Property="IsTabStop" Value="False" />
+			<Setter Property="Cursor" Value="Arrow" />
+		</Style>
+		<!--#endregion-->
+		<!--#region Cadastro de Piloto - TEXTO -->
+		<Style x:Key="Textos Cadastro de Piloto" TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="FontSize" Value="25" />
+			<Setter Property="Height" Value="50" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
+		</Style>
+		<!--#endregion-->
+		<Style x:Key="TextBox" TargetType="TextBox">
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="Height" Value="50" />
+			<Setter Property="Width" Value="350" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto" MinWidth="300" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.RowSpan="2">
+			<!--#region Retangulo -->
+			<Frame Width="300" HorizontalAlignment="Left">
+				<Frame.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+						<GradientStop Color="#FF8A0000" Offset="0" />
+						<GradientStop Color="#CC8A0000" Offset="1" />
+					</LinearGradientBrush>
+				</Frame.Background>
+			</Frame>
+			<Frame Width="100" HorizontalAlignment="Left" Margin="100, 0, 0, 0">
+				<Frame.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+						<GradientStop Color="#FF8A0000" Offset="0" />
+						<GradientStop Color="#7F000000" Offset="1" />
+					</LinearGradientBrush>
+				</Frame.Background>
+			</Frame>
+			<!--#endregion-->
+			<!--#region Botões -->
+			<Button Style="{StaticResource Botoes}" Margin="25, 75, 0, 0" Click="TelaCadastroDePilotos">
+				<TextBox Text="PILOTOS" Style="{StaticResource Textos}" />
+			</Button>
+			<Button Style="{StaticResource Botoes}" Margin="25, 200, 0, 0">
+				<TextBox Text="EQUIPES" Style="{StaticResource Textos}" />
+			</Button>
+			<Button Style="{StaticResource Botoes}" Margin="25, 325, 0, 0">
+				<TextBox Text="TEMPORADAS" Style="{StaticResource Textos}" />
+			</Button>
+			<Button HorizontalAlignment="Left" Height="100" Margin="100,535,0,0" VerticalAlignment="Top" Width="100" Click="QuitApp" BorderThickness="0,0,0,0">
+				<Button.Background>
+					<ImageBrush ImageSource="/power off white.png" Stretch="Uniform" />
+				</Button.Background>
+			</Button>
+			<!--#endregion-->
+		</Grid>
+	</Grid>
 </Window>

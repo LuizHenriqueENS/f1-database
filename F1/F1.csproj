@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="close.png" />
+    <None Remove="power off white.png" />
+    <None Remove="power-off.png" />
     <None Remove="power_off.png" />
   </ItemGroup>
 
@@ -24,6 +26,8 @@
 
   <ItemGroup>
     <Resource Include="close.png" />
+    <Resource Include="power off white.png" />
+    <Resource Include="power-off.png" />
     <Resource Include="power_off.png" />
   </ItemGroup>
 

@@ -1,7 +1,4 @@
 ﻿using System; // EventArgs
-using System.Collections.Generic;
-using System.ComponentModel; // CancelEventArgs
-using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows; // window
@@ -79,10 +76,6 @@ namespace F1 {
                 MessageBoxResult result = PopUp($"Você deseja cadastrar o piloto '{campo_nome.Text}'?", "Continuar?", MessageBoxButton.YesNo, MessageBoxImage.None);
                 if (result == MessageBoxResult.Yes) {
                     AdicionarPilotoAoBanco();
-
-                    
-                    Excluir excluir = new();
-                    excluir.Show();
                 }
             }
 
