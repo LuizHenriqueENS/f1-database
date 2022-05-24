@@ -5,26 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace F1 {
-    class Cidades {
+    internal class Cidades {
 
         public int ID { get; set; }
-        public string Name { get; set; }
-        public int Country_Id { get; set; }
-        public string Country_Code { get; set; }
-        public string ISO2 { get; set; }
+        public string? Name { get; set; } = default;
+        public int? ID_Pais { get; set; } = default;
 
-        public Cidades() {
+        public Cidades() { }
+
+        public Cidades(string? name, int? iD_Pais) {
+            Name = name;
+            ID_Pais = iD_Pais;
         }
-        public Cidades(int iD, string name, int country_Id, string country_Code, string iSO2) {
+
+        public Cidades(int iD, string? name, int? iD_Pais) {
             ID = iD;
             Name = name;
-            Country_Id = country_Id;
-            Country_Code = country_Code;
-            ISO2 = iSO2;
-        }
-
-        public override string? ToString() {
-            return $"ID: {ID}, NAME: {Name}, COUNTRY ID: {Country_Id}, COUNTRY CODE: {Country_Code}, ISO2: {ISO2}";
+            ID_Pais = iD_Pais;
         }
     }
 }

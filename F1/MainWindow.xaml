@@ -64,7 +64,7 @@
 			<Button Style="{StaticResource Botoes}" Margin="25, 75, 0, 0" Click="TelaCadastroDePilotos">
 				<TextBox Text="PILOTOS" Style="{StaticResource Textos}" />
 			</Button>
-			<Button Style="{StaticResource Botoes}" Margin="25, 200, 0, 0" Click="AddPaises">
+			<Button Style="{StaticResource Botoes}" Margin="25, 200, 0, 0" >
 				<TextBox Text="EQUIPES" Style="{StaticResource Textos}" />
 			</Button>
 			<Button Style="{StaticResource Botoes}" Margin="25, 325, 0, 0">

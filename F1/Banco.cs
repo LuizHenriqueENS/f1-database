@@ -9,8 +9,8 @@ namespace F1 {
 
         private static string caminho = Environment.CurrentDirectory;
         private static string nomeBanco = "banco_pilotos.db";
-        private static string caminhoBanco = caminho+@"\banco\";
-        
+        private static string caminhoBanco = caminho + @"\banco\";
+
 
         private static SQLiteConnection ConexaoBanco() {
             conexao = new SQLiteConnection(@"Data Source =" + caminhoBanco + nomeBanco);
@@ -41,20 +41,19 @@ namespace F1 {
         public static void AdicionarPiloto(Piloto piloto) {
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "INSERT INTO tb_pilotos(T_NOMEPILOTO, T_LOCALNASCIMENTO, DT_NASCIMENTO, DT_DATAFALECIMENTO, T_PAISDELICENCA, T_CHAVEIDENTIFICACAO, B_ESTAVIVO) values (@Nome, @Local, @DtNascimento, @DtFalecimento, @Paisdelicenca, @ChaveDeIdentificacao, @Estavivo)";
+                    cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL, NASCIMENTO, NACIONALIDADE, CIDADE_NAS, FALECIMENTO, PAISDELICENCA, PAIS_FAL, CIDADE_FAL, ESTAVIVO, CHAVEIDENTIFICACAO)" +
+                        " values (@Nome, @Nome_Profissional, @Nascimento, @Nacionalidade, @Cidade_Nas, @Falecimento, @Pais_de_Licenca, @Pais_Fal, @Cidade_Fal, @EstaVivo, @Chave)";
                     cmd.Parameters.AddWithValue("@Nome", piloto.Nome);
-                    cmd.Parameters.AddWithValue("@Local", piloto.LocalDoNascimento);
-                    cmd.Parameters.AddWithValue("@DtNascimento", piloto.DataDoNascimento.ToString("dd/MM/yyyy"));
-                    if (piloto.DataDoFalecimento.Ticks == 0) {
-                        cmd.Parameters.AddWithValue("@DtFalecimento", null);
-                        cmd.Parameters.AddWithValue("@Estavivo", true);
-                    }
-                    else {
-                        cmd.Parameters.AddWithValue("@DtFalecimento", piloto.DataDoFalecimento.ToString("dd/MM/yyyy"));
-                        cmd.Parameters.AddWithValue("@Estavivo", false);
-                    }
-                    cmd.Parameters.AddWithValue("@Paisdelicenca", piloto.PaisDeLicenca);
-                    cmd.Parameters.AddWithValue("@ChaveDeIdentificacao", piloto.Identificacao());
+                    cmd.Parameters.AddWithValue("@Nome_Profissional", piloto.NomeProfissional);
+                    cmd.Parameters.AddWithValue("@Nascimento", piloto.DataDoNascimento);
+                    cmd.Parameters.AddWithValue("@Nacionalidade", piloto.Nacionalidade);
+                    cmd.Parameters.AddWithValue("@Cidade_Nas", piloto.CidadeNascimento);
+                    cmd.Parameters.AddWithValue("@Falecimento", piloto.DataDoFalecimento);
+                    cmd.Parameters.AddWithValue("@Pais_Fal", piloto.PaisFalecimento);
+                    cmd.Parameters.AddWithValue("@Cidade_Fal", piloto.CidadeFalecimento);
+                    cmd.Parameters.AddWithValue("@EstaVivo", piloto.Falecido);
+                    cmd.Parameters.AddWithValue("@Chave", piloto.ChaveIdentificacao);
+                    
                     cmd.ExecuteNonQuery();
                 }
             }

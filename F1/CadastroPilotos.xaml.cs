@@ -1,48 +1,26 @@
 ﻿using System; // EventArgs
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows; // window
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace F1 {
     public partial class CadastroPilotos : Window {
-        
-        bool falecido = false;
-
-
-        public CadastroPilotos() {
-            InitializeComponent();
-        }
-
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
-            Window? mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            if (mw == null) {
-                MainWindow main = new();
-                main.Show();
-            }
-            else {
-                Console.WriteLine("Teste");
-            }
-
-            base.OnClosing(e);
-        }
-
-
-        private void CampoDesselecionado(object sender, RoutedEventArgs e) {
-            TextBox? txt = sender as TextBox;
-        }
-
 
         private static readonly Regex _regexTXT = new Regex("[a-zA-Z]+"); //regex that matches disallowed text
         private static readonly Regex _regexNUMBERS = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-      //  private static readonly Regex _regexDate = new Regex(@"[^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"); //regex that matches disallowed text
-        private static bool IsTextAllowed(string text) {
-            return !_regexTXT.IsMatch(text);
-        }
-        private static bool IsNumbersAllowed(string text) {
-            return !_regexNUMBERS.IsMatch(text);
-        }
 
+        bool falecido = false;
+        List<Cidades> cidades = new();
+        public CadastroPilotos() {
+            InitializeComponent();
+            comboBox.ItemsSource = ComboBoxPaises.MostrarPaises();
+        }
 
         //private void AbrirPopUp(object sender, RoutedEventArgs e) {
         //    bool tudoOK = true;
@@ -102,17 +80,43 @@ namespace F1 {
             falecido = false;
         }
 
-        //private void AdicionarPilotoAoBanco() {
-        //    Piloto p = new();
-        //    if (campo_dataFalecimento.Text.Trim() == "") {
-        //        p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text).Date, campo_licenca.Text, p.Identificacao());
-        //    }
-        //    else {
-        //        p = new(campo_nome.Text, campo_nascimento.Text, DateTime.Parse(campo_dataNascimento.Text), DateTime.Parse(campo_dataFalecimento.Text).Date, campo_licenca.Text, p.Identificacao());
-        //    }
+        private void AdicionarPilotoAoBanco(object sender, RoutedEventArgs e) {
+            Piloto p = new();
+            if ((bool)isFalecido.IsChecked) {
+                Console.WriteLine("TRUE");
+            }
 
-        //    Banco.AdicionarPiloto(p);
-        //}
+
+         //   Banco.AdicionarPiloto(p);
+        }
+
+
+        private static bool IsTextAllowed(string text) {
+            return !_regexTXT.IsMatch(text);
+        }
+        private static bool IsNumbersAllowed(string text) {
+            return !_regexNUMBERS.IsMatch(text);
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            Window? mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (mw == null) {
+                MainWindow main = new();
+                main.Show();
+            }
+            else {
+                Console.WriteLine("Teste");
+            }
+
+            base.OnClosing(e);
+        }
+
+        private void FiltraCidade(object sender, RoutedEventArgs e) {
+            ComboBox cb = e.Source as ComboBox ?? throw new Exception();
+            cidades = ComboBoxCidades.MonstrarCidades(0);
+
+        }
+
     }
 
 }
