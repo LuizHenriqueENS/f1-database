@@ -1,101 +1,113 @@
-﻿<Window x:Class="F1.CadastroPilotos"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:F1"
-        mc:Ignorable="d"
-        Title="CadastroPilotos" Height="640" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Window.Resources>
-        <!--#region TextBlock -->
-        <Style x:Key="Textos Cadastro de Piloto" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="FontWeight" Value="UltraBlack" />
-            <Setter Property="Margin" Value="15,0,0,0" />
-
-
-        </Style>
-        <!--#endregion-->
-        <!--#region TextBox -->
-        <Style x:Key="TextBox" TargetType="TextBox">
-            <Setter Property="FontSize" Value="30" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Height" Value="50" />
-            <Setter Property="Width" Value="310" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-
-            <!--#endregion-->
-        </Style>
-        <Style x:Key="ComboBoxes" TargetType="ComboBox">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="IsEditable" Value="True"/>
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="Width" Value="310"/>
-            <Setter Property="Height" Value="50"/>
-        </Style>
-
-    </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="175"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Digite as informações do piloto para cadastrá-lo" HorizontalAlignment="Left" Grid.ColumnSpan="3" FontSize="50" TextWrapping="Wrap" FontWeight="ExtraBlack" TextAlignment="Center" VerticalAlignment="Center" Margin="91,0,0,0"/>
-        <TextBlock Grid.Row="1" Text="Nome completo*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-        <TextBox Grid.Row="1" Style="{StaticResource TextBox}" />
-        <TextBlock Grid.Row="2" Text="Conhecido por*" Style="{StaticResource Textos Cadastro de Piloto}" />
-        <TextBox Grid.Row="2" Style="{StaticResource TextBox}" />
-        <TextBlock Grid.Row="3" Text="Data de nascimento*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-        <TextBox Grid.Row="3" Style="{StaticResource TextBox}" Margin="0,0,0,0"/>
-        <TextBlock Grid.Row="4" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-        <ComboBox  Grid.Row="4" x:Name="comboBox" Style="{StaticResource ComboBoxes}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <TextBlock Grid.Row="5" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0"  />
-        <ComboBox Grid.Row="5" x:Name="comboBoxCidade" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <CheckBox x:Name="isFalecido" Content="Falecido?" Grid.Row="1" Grid.Column="2" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Checked="Falecido" Unchecked="FalecidoUnchecked" Margin="134,0,0,0"/>
-        <TextBlock x:Name="txt_dataObito" Grid.Row="2" Grid.Column="1" Text="Data do óbito*" Opacity="0.2" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="input_dataObito" Grid.Row="2" Grid.Column="2"  Style="{StaticResource TextBox}" IsEnabled="False" Margin="0,0,50,0" />
-        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="txt_pais" Text="País*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2"/>
-        <TextBox Grid.Row="3" Grid.Column="2" x:Name="input_pais"  Style="{StaticResource TextBox}" IsEnabled="False" Margin="0,0,50,0"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" x:Name="txt_cidade" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Row="4" Grid.Column="2" x:Name="input_cidade" Style="{StaticResource TextBox}" IsEnabled="False" Margin="0,0,50,0"/>
-
-        <Button Content="Cadastrar" FontSize="45" FontWeight="Black" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="300" Margin="390,5,0,5" Click="AdicionarPilotoAoBanco"/>
-        <TextBlock Text="* Campos obrigatórios" Grid.Row="8" FontSize="20" Margin="0,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-
-
-    </Grid>
+﻿<Window x:Class="F1.CadastroPilotos" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:F1" mc:Ignorable="d" Title="CadastroPilotos" Height="640" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+	<Window.Resources>
+		<!--#region TextBlock -->
+		<Style x:Key="Textos Cadastro de Piloto" TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="FontWeight" Value="UltraBlack" />
+			<Setter Property="Margin" Value="15,0,0,0" />
+		</Style>
+		<!--#endregion-->
+		<!--#region TextBox -->
+		<Style x:Key="TextBox" TargetType="TextBox">
+			<Setter Property="FontSize" Value="30" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Height" Value="50" />
+			<Setter Property="Width" Value="310" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<!--#endregion-->
+		</Style>
+		<Style x:Key="ComboBoxes" TargetType="ComboBox">
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="IsEditable" Value="True" />
+			<Setter Property="FontSize" Value="25" />
+			<Setter Property="Width" Value="310" />
+			<Setter Property="Height" Value="50" />
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="175" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="55" />
+			<RowDefinition Height="1*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<TextBlock Text="Digite as informações do piloto para cadastrá-lo" HorizontalAlignment="Left" Grid.ColumnSpan="3" FontSize="50" TextWrapping="Wrap" FontWeight="ExtraBlack" TextAlignment="Center" VerticalAlignment="Center" Margin="91,0,0,0" />
+		<TextBlock Grid.Row="1" Text="Nome completo*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<TextBox Grid.Row="1" x:Name="nomeCompleto" Style="{StaticResource TextBox}" />
+		<TextBlock Grid.Row="2" Text="Nome Profissional*" Style="{StaticResource Textos Cadastro de Piloto}" />
+		<TextBox Grid.Row="2" x:Name="nomeProfissional" Style="{StaticResource TextBox}" />
+		<TextBlock Grid.Row="3" Text="Data de nascimento*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<DatePicker Grid.Row="3" x:Name="dataNascimento" Height="50" HorizontalAlignment="Right" Width="310" Margin="0,0,0,0" SelectedDate="12/31/1900" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" />
+		<TextBlock Grid.Row="4" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<ComboBox Grid.Row="4" x:Name="comboBox" Style="{StaticResource ComboBoxes}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBlock Grid.Row="5" x:Name="cidade" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<ComboBox Grid.Row="5" x:Name="comboBoxCidade" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBlock Grid.Row="6" Text="País da licença*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<ComboBox Grid.Row="6" x:Name="comboBoxPaisLicenca" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<CheckBox x:Name="isFalecido" Content="Falecido?" Grid.Row="1" Grid.Column="1" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Checked="Falecido" Unchecked="FalecidoUnchecked" Margin="0,0,60,0" />
+		<TextBlock x:Name="txt_dataObito" Grid.Row="2" Grid.Column="1" Text="Data do óbito*" Opacity="0.2" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Grid.ColumnSpan="2" />
+		<TextBox x:Name="input_dataObito" Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBox}" IsEnabled="False" Margin="0,0,50,0" />
+		<TextBlock Grid.Row="3" Grid.Column="1" x:Name="txt_paisFalecimento" Text="País*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2" />
+		<ComboBox Grid.Row="3" Grid.Column="1" x:Name="input_paisFal" Style="{StaticResource ComboBoxes}" Margin="0,0,50,0" IsEnabled="False">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBlock Grid.Row="4" Grid.Column="1" x:Name="txt_cidadeFal" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2" Grid.ColumnSpan="2" />
+		<ComboBox Grid.Row="4" Grid.Column="1" x:Name="input_cidadeFalecimento" Style="{StaticResource ComboBoxes}" Margin="0,0,50,0" IsEnabled="False">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" />
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<Button Content="Cadastrar" FontSize="45" FontWeight="Black" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Right" Width="310" Click="AdicionarPilotoAoBanco" />
+		<TextBlock Text="* Campos obrigatórios" Grid.Row="7" Grid.RowSpan="2" FontSize="20" Margin="0,32,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+	</Grid>
 </Window>

@@ -76,7 +76,6 @@
 				</Button.Background>
 			</Button>
 			<!--#endregion-->
-            <TextBlock x:Name="txtTeste" Text="Teste"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Grid>
 	</Grid>
 </Window>

@@ -17,9 +17,12 @@ namespace F1 {
 
         bool falecido = false;
         List<Cidades> cidades = new();
+
         public CadastroPilotos() {
             InitializeComponent();
             comboBox.ItemsSource = ComboBoxPaises.MostrarPaises();
+            input_paisFal.ItemsSource = ComboBoxPaises.MostrarPaises();
+            comboBoxPaisLicenca.ItemsSource = ComboBoxPaises.MostrarPaises();
         }
 
         //private void AbrirPopUp(object sender, RoutedEventArgs e) {
@@ -57,25 +60,25 @@ namespace F1 {
         }
 
         private void Falecido(object sender, RoutedEventArgs e) {
-            txt_pais.Opacity = 1;
+            txt_cidadeFal.Opacity = 1;
             txt_dataObito.Opacity = 1;
-            txt_cidade.Opacity = 1;
+            txt_paisFalecimento.Opacity = 1;
 
-            input_pais.IsEnabled = true;
+            input_paisFal.IsEnabled = true;
             input_dataObito.IsEnabled = true;
-            input_cidade.IsEnabled = true;
+            input_cidadeFalecimento.IsEnabled = true;
 
             falecido = true;
         }
 
         private void FalecidoUnchecked(object sender, RoutedEventArgs e) {
-            txt_pais.Opacity = 0.2;
+            txt_cidadeFal.Opacity = 0.2;
             txt_dataObito.Opacity = 0.2;
-            txt_cidade.Opacity = 0.2;
+            txt_paisFalecimento.Opacity = 0.2;
 
-            input_pais.IsEnabled = false;
+            input_paisFal.IsEnabled = false;
             input_dataObito.IsEnabled = false;
-            input_cidade.IsEnabled = false;
+            input_cidadeFalecimento.IsEnabled = false;
 
             falecido = false;
         }
@@ -83,10 +86,11 @@ namespace F1 {
         private void AdicionarPilotoAoBanco(object sender, RoutedEventArgs e) {
             Piloto p = new();
             if ((bool)isFalecido.IsChecked) {
-                Console.WriteLine("TRUE");
+                
             }
+            else {
 
-
+            }
          //   Banco.AdicionarPiloto(p);
         }
 
@@ -105,16 +109,8 @@ namespace F1 {
                 main.Show();
             }
             else {
-                Console.WriteLine("Teste");
             }
-
             base.OnClosing(e);
-        }
-
-        private void FiltraCidade(object sender, RoutedEventArgs e) {
-            ComboBox cb = e.Source as ComboBox ?? throw new Exception();
-            cidades = ComboBoxCidades.MonstrarCidades(0);
-
         }
 
     }
