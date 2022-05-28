@@ -61,63 +61,79 @@ namespace F1 {
         }
 
         private void AdicionarPilotoAoBanco(object sender, RoutedEventArgs e) {
-            Piloto p = new();
+            Piloto p;
             if ((bool)isFalecido.IsChecked) {
+                var t1 = DateTime.Parse(input_dataObito.Text);
+                var t2 = DateTime.Parse(dataNascimento.Text);
                 if (input_cidadeFalecimento.Text == "") {
                     PopUp("O campo 'Cidade de falecimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                if (input_dataObito.Text == "") {
+                else if (input_dataObito.Text == "") {
 
                     PopUp("O campo 'Data de Óbito' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                if (input_paisFal.Text == "") {
+                else if (input_paisFal.Text == "") {
 
                     PopUp("O campo 'País de falecimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-
-                var t1 = DateTime.Parse(input_dataObito.Text);
-                var t2 = DateTime.Parse(dataNascimento.Text);
-                if (t1.Ticks < t2.Ticks) {
+                else if (t1.Ticks < t2.Ticks) {
                     PopUp("A data de óbito não pode ser menor que a data de nascimento", "ERRO", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                p = new Piloto(nomeCompleto.Text, nomeProfissional.Text, DateTime.Parse(dataNascimento.Text), comboBox.Text, comboBoxCidade.Text, DateTime.Parse(input_dataObito.Text), input_cidadeFalecimento.Text, falecido, input_paisFal.Text, comboBoxPaisLicenca.Text);
-
+                else {
+                    p = new Piloto(nomeCompleto.Text, nomeProfissional.Text, DateTime.Parse(dataNascimento.Text), comboBox.Text, comboBoxCidade.Text, DateTime.Parse(input_dataObito.Text), input_cidadeFalecimento.Text, falecido, input_paisFal.Text, comboBoxPaisLicenca.Text);
+                    Banco.AdicionarPiloto(p);
+                    LimparCampos();
+                }
             }
             else {
-
-
                 if (nomeCompleto.Text == "") {
-                    PopUp("O campo 'Nome completo' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
-                }
-                if (nomeProfissional.Text == "") {
                     PopUp("O campo 'Nome profissional' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                if (comboBox.Text == "") {
+                else if (nomeProfissional.Text == "") {
+                    PopUp("O campo 'Nome profissional' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                else if (comboBox.Text == "") {
                     PopUp("O campo 'Nacionalidade' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
 
-                if (comboBoxCidade.Text == "") {
+                else if (comboBoxCidade.Text == "") {
                     PopUp("O campo 'Cidade de nascimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                if (dataNascimento.Text == "") {
+                else if (dataNascimento.Text == "") {
                     PopUp("O campo 'Data de nascimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
-                if (comboBoxPaisLicenca.Text == "") {
+                else if (comboBoxPaisLicenca.Text == "") {
                     PopUp("O campo 'País da licença' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
+                else {
 
-                string nome = nomeCompleto.Text;
-                string nomeProfissionalTxt = nomeProfissional.Text;
-                DateTime dt = DateTime.Parse(dataNascimento.Text);
-                string nacionalidade = comboBox.Text;
-                string cidadeNascimento = comboBoxCidade.Text;
-                string paisDaLicenca = comboBoxPaisLicenca.Text;
-                p = new Piloto(nome, nomeProfissionalTxt, dt, nacionalidade, cidadeNascimento, false, paisDaLicenca);
+                    string nome = nomeCompleto.Text;
+                    string nomeProfissionalTxt = nomeProfissional.Text;
+                    DateTime dt = DateTime.Parse(dataNascimento.Text);
+                    string nacionalidade = comboBox.Text;
+                    string cidadeNascimento = comboBoxCidade.Text;
+                    string paisDaLicenca = comboBoxPaisLicenca.Text;
+
+                    p = new Piloto(nome, nomeProfissionalTxt, dt, nacionalidade, cidadeNascimento, false, paisDaLicenca);
+                    Banco.AdicionarPiloto(p);
+                    LimparCampos();
+                }
+
 
             }
-                Banco.AdicionarPiloto(p);
         }
 
+        private void LimparCampos() {
+            nomeCompleto.Text = "";
+            nomeProfissional.Text = "";
+            comboBox.Text = "";
+            comboBoxCidade.Text = "";
+            dataNascimento.Text = "05/03/1980";
+            comboBoxPaisLicenca.Text = "";
+            input_dataObito.Text = "";
+            input_paisFal.Text = "";
+            input_cidadeFalecimento.Text = "";
+        }
 
         private static bool IsTextAllowed(string text) {
             return !_regexTXT.IsMatch(text);
@@ -139,9 +155,71 @@ namespace F1 {
 
         private void NomeCompleto_LostFocus(object sender, RoutedEventArgs e) {
             TextBox? textBox = sender as TextBox;
-            if (Banco.listaDePilotos(textBox.Text)){
+            if (Banco.listaDePilotos(textBox.Text)) {
                 PopUp($"O piloto '{textBox.Text}' consta no banco de dados", "Piloto já registrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                textBox.Text = "";
             }
+        }
+
+        private void AdicionarOuAutoCompletarCidade(object sender, RoutedEventArgs e) {
+            ComboBox? cb = e.Source as ComboBox;
+
+            if (!BancoPaises.FiltrarCidades(cb.Text) && cb.Text != "" && cb.Text.Length > 2) {
+                MessageBoxResult resposta = PopUp("A cidade não consta no banco de dados. Deseja adicioná-la?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resposta == MessageBoxResult.Yes) {
+                    BancoPaises.AdicionarCidadesPT(cb.Text, comboBox.Text);
+                }
+            }
+
+
+        }
+
+        private void AtivarCampoCidade(object sender, KeyEventArgs e) {
+            ComboBox cb = e.Source as ComboBox;
+            if (cb.Text.Length > 0) {
+                comboBoxCidade.IsEnabled = true;
+            }
+        }
+
+        private void FiltrarCidadesComboBox(object sender, RoutedEventArgs e) {
+            ComboBox? cb = e.Source as ComboBox;
+            List<string> lista = new();
+            foreach (DataRow dr in BancoPaises.ObterTodosAsCidades().Rows) {
+                if (dr["PAIS"].ToString() == comboBox.Text) {
+                    lista.Add(dr["NOME"].ToString());
+                }
+            }
+            comboBoxCidade.ItemsSource = lista;
+        }
+
+        private void FiltrarCidadesComboBoxFalecimento(object sender, RoutedEventArgs e) {
+            ComboBox? cb = e.Source as ComboBox;
+            List<string> lista = new();
+            foreach (DataRow dr in BancoPaises.ObterTodosAsCidades().Rows) {
+                if (dr["PAIS"].ToString() == input_paisFal.Text) {
+                    lista.Add(dr["NOME"].ToString());
+                }
+            }
+            input_cidadeFalecimento.ItemsSource = lista;
+        }
+
+        private void AtivarCampoCidadeFalecimento(object sender, KeyEventArgs e) {
+            ComboBox cb = e.Source as ComboBox;
+            if (cb.Text.Length > 0) {
+                input_cidadeFalecimento.IsEnabled = true;
+            }
+        }
+        private void AdicionarCidadeManualmenteFalecimento(object sender, RoutedEventArgs e) {
+            ComboBox? cb = e.Source as ComboBox;
+
+            if (!BancoPaises.FiltrarCidades(cb.Text) && cb.Text != "" && cb.Text.Length > 2) {
+                MessageBoxResult resposta = PopUp("A cidade não consta no banco de dados. Deseja adicioná-la?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resposta == MessageBoxResult.Yes) {
+                    BancoPaises.AdicionarCidadesPT(cb.Text, input_paisFal.Text);
+                }
+            }
+
+
         }
     }
 

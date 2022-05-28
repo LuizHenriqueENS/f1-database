@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
@@ -87,7 +88,7 @@ namespace F1 {
 
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "SELECT * FROM tb_cidades";
+                    cmd.CommandText = "SELECT * FROM tb_cidadesPT";
                     da = new SQLiteDataAdapter(cmd.CommandText, ConexaoBanco());
                     da.Fill(dt);
                     return dt;
@@ -99,6 +100,16 @@ namespace F1 {
             }
         }
         #endregion
+
+        public static bool FiltrarCidades(string cidade) {
+            DataTable dt = ObterTodosAsCidades();
+            foreach (DataRow dr in dt.Rows) {
+                if (dr["NOME"].ToString().ToLower() == cidade.ToLower()) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         #region AdicionarPaises
         public static void AdicionarPaises(Paises paises) {
@@ -165,6 +176,19 @@ namespace F1 {
                 Console.WriteLine(ex.StackTrace);
             }
         }
+        public static void AdicionarCidadesPT(string cidade, string pais) {
+            try {
+                using (var cmd = ConexaoBanco().CreateCommand()) {
+                    cmd.CommandText = "INSERT INTO tb_cidadesPT(NOME, PAIS) values (@Nome, @Pais)";
+                    cmd.Parameters.AddWithValue("@Nome", cidade);
+                    cmd.Parameters.AddWithValue("@Pais", pais);
+                    cmd.ExecuteNonQuery();
 
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
     }
 }

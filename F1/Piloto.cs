@@ -49,9 +49,20 @@ namespace F1 {
         public string Identificacao() {
             string chave = "";
 
+            string xyz = "";
             string[] nomes = Nome.Split(" ");
             string abc = Nome.Substring(0, 3);
-            string xyz = nomes[nomes.Length - 1].Substring(0, 3);
+            if (nomes[nomes.Length - 1].Length == 2) {        
+                xyz = nomes[nomes.Length - 1] + "X";
+
+            } else if(nomes[nomes.Length - 1].Length == 1) {
+                xyz = nomes[nomes.Length - 1] + "XY";
+            }
+            else {
+                xyz = nomes[nomes.Length - 1].Substring(0, 3);
+
+            }
+
             if (DataDoNascimento.Month < 9 && DataDoNascimento.Day < 9) {
                 chave = $"{DataDoNascimento.Year}0{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
             }
