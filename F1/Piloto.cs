@@ -2,16 +2,16 @@
 
 namespace F1 {
     internal class Piloto {
-        public string? Nome { get; set; }
-        public string? NomeProfissional { get; set; }
+        public string Nome { get; set; }
+        public string NomeProfissional { get; set; }
         public DateTime DataDoNascimento { get; set; }
-        public string? Nacionalidade { get; set; }
-        public string? CidadeNascimento { get; set; }
+        public string Nacionalidade { get; set; }
+        public string CidadeNascimento { get; set; }
         public DateTime DataDoFalecimento { get; set; }
-        public string? CidadeFalecimento { get; set; }
+        public string CidadeFalecimento { get; set; }
         public bool Falecido { get; set; }
-        public string? PaisFalecimento { get; set; }
-        public string? PaisDeLicenca { get; set; }
+        public string PaisFalecimento { get; set; }
+        public string PaisDeLicenca { get; set; }
 
         public string ChaveIdentificacao { get; set; }
 
@@ -19,9 +19,9 @@ namespace F1 {
         }
 
         public Piloto(string? nome, string? nomeProfissional, DateTime dataDoNascimento,
-            string? nacionalidade, string? cidadeNascimento, DateTime dataDoFalecimento, 
-            string? cidadeFalecimento, bool falecido, string? paisFalecimento, string? paisDeLicenca, 
-            string chaveIdentificacao) {
+            string? nacionalidade, string? cidadeNascimento, DateTime dataDoFalecimento,
+            string? cidadeFalecimento, bool falecido, string? paisFalecimento, string? paisDeLicenca
+            ) {
             Nome = nome;
             NomeProfissional = nomeProfissional;
             DataDoNascimento = dataDoNascimento;
@@ -32,10 +32,9 @@ namespace F1 {
             Falecido = falecido;
             PaisFalecimento = paisFalecimento;
             PaisDeLicenca = paisDeLicenca;
-            ChaveIdentificacao = chaveIdentificacao;
         }
 
-        public Piloto(string? nome, string? nomeProfissional, DateTime dataDoNascimento, string? nacionalidade, string? cidadeNascimento, bool falecido, string? paisDeLicenca, string chaveIdentificacao) {
+        public Piloto(string? nome, string? nomeProfissional, DateTime dataDoNascimento, string? nacionalidade, string? cidadeNascimento, bool falecido, string? paisDeLicenca) {
             Nome = nome;
             NomeProfissional = nomeProfissional;
             DataDoNascimento = dataDoNascimento;
@@ -43,35 +42,30 @@ namespace F1 {
             CidadeNascimento = cidadeNascimento;
             Falecido = falecido;
             PaisDeLicenca = paisDeLicenca;
-            ChaveIdentificacao = chaveIdentificacao;
         }
+
+
 
         public string Identificacao() {
             string chave = "";
-            if (Nome != null) {
-                int len = Nome.Length - 3;
-                string[] nomes = Nome.Split(" ");
-                string abc = Nome.Substring(0, 3);
-                string xyz = nomes[nomes.Length - 1].Substring(0, 3);
-                if (DataDoNascimento.Month < 9 && DataDoNascimento.Day < 9) {
-                    chave = $"{DataDoNascimento.Year}0{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
-                }
-                else if (DataDoNascimento.Month > 9 && DataDoNascimento.Day < 9) {
-                    chave = $"{DataDoNascimento.Year}{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
-                }
-                else if (DataDoNascimento.Month < 9 && DataDoNascimento.Day > 9) {
-                    chave = $"{DataDoNascimento.Year}0{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
-                }
-                else {
-                    chave = $"{DataDoNascimento.Year}{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
-                }
-                ChaveIdentificacao = chave;
-                return chave;
+
+            string[] nomes = Nome.Split(" ");
+            string abc = Nome.Substring(0, 3);
+            string xyz = nomes[nomes.Length - 1].Substring(0, 3);
+            if (DataDoNascimento.Month < 9 && DataDoNascimento.Day < 9) {
+                chave = $"{DataDoNascimento.Year}0{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
             }
-
-            return "";
-
-
+            else if (DataDoNascimento.Month > 9 && DataDoNascimento.Day < 9) {
+                chave = $"{DataDoNascimento.Year}{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
+            }
+            else if (DataDoNascimento.Month < 9 && DataDoNascimento.Day > 9) {
+                chave = $"{DataDoNascimento.Year}0{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
+            }
+            else {
+                chave = $"{DataDoNascimento.Year}{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}";
+            }
+            ChaveIdentificacao = chave;
+            return chave;
         }
         public override string ToString() {
             return $"{Identificacao()} + {Nome} -- {Nacionalidade} -- {DataDoNascimento} -- {DataDoFalecimento}, {PaisDeLicenca}";

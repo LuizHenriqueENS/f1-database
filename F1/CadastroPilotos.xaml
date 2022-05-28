@@ -30,6 +30,19 @@
 			<Setter Property="Width" Value="310" />
 			<Setter Property="Height" Value="50" />
 		</Style>
+		<EventTrigger x:Key="evento">
+			<BeginStoryboard>
+				<Storyboard>
+					<Storyboard x:Name="myStoryboard">
+						<DoubleAnimation From="30" To="200" Duration="00:00:3"  Storyboard.TargetProperty="Height">
+							<DoubleAnimation.EasingFunction>
+								<BounceEase Bounces="2" EasingMode="EaseOut" Bounciness="2" />
+							</DoubleAnimation.EasingFunction>
+						</DoubleAnimation>
+					</Storyboard>
+				</Storyboard>
+			</BeginStoryboard>
+		</EventTrigger>
 	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -49,11 +62,20 @@
 		</Grid.ColumnDefinitions>
 		<TextBlock Text="Digite as informações do piloto para cadastrá-lo" HorizontalAlignment="Left" Grid.ColumnSpan="3" FontSize="50" TextWrapping="Wrap" FontWeight="ExtraBlack" TextAlignment="Center" VerticalAlignment="Center" Margin="91,0,0,0" />
 		<TextBlock Grid.Row="1" Text="Nome completo*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-		<TextBox Grid.Row="1" x:Name="nomeCompleto" Style="{StaticResource TextBox}" />
+		<TextBox Grid.Row="1" x:Name="nomeCompleto" Style="{StaticResource TextBox}" LostFocus="NomeCompleto_LostFocus" />
 		<TextBlock Grid.Row="2" Text="Nome Profissional*" Style="{StaticResource Textos Cadastro de Piloto}" />
 		<TextBox Grid.Row="2" x:Name="nomeProfissional" Style="{StaticResource TextBox}" />
 		<TextBlock Grid.Row="3" Text="Data de nascimento*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-		<DatePicker Grid.Row="3" x:Name="dataNascimento" Height="50" HorizontalAlignment="Right" Width="310" Margin="0,0,0,0" SelectedDate="12/31/1900" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" />
+		<DatePicker Grid.Row="3" x:Name="dataNascimento" Height="50" HorizontalAlignment="Right" Width="310" Margin="0,0,0,0" SelectedDate="12/31/1900" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Right">
+			<DatePicker.BorderBrush>
+				<LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+					<GradientStop Color="#FFA3AEB9" />
+					<GradientStop Color="#FF8399A9" Offset="0.375" />
+					<GradientStop Color="#FF718597" Offset="0.375" />
+					<GradientStop Color="#FFABADB3" Offset="1" />
+				</LinearGradientBrush>
+			</DatePicker.BorderBrush>
+		</DatePicker>
 		<TextBlock Grid.Row="4" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
 		<ComboBox Grid.Row="4" x:Name="comboBox" Style="{StaticResource ComboBoxes}">
 			<ComboBox.ItemTemplate>
@@ -86,7 +108,16 @@
 		</ComboBox>
 		<CheckBox x:Name="isFalecido" Content="Falecido?" Grid.Row="1" Grid.Column="1" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Checked="Falecido" Unchecked="FalecidoUnchecked" Margin="0,0,60,0" />
 		<TextBlock x:Name="txt_dataObito" Grid.Row="2" Grid.Column="1" Text="Data do óbito*" Opacity="0.2" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Grid.ColumnSpan="2" />
-		<TextBox x:Name="input_dataObito" Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBox}" IsEnabled="False" Margin="0,0,50,0" />
+		<DatePicker Grid.Row="2" Grid.Column="1" x:Name="input_dataObito" Height="50" HorizontalAlignment="Right" Width="310" Margin="0,0,50,0" SelectedDate="12/31/1900" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Right" IsEnabled="False">
+			<DatePicker.BorderBrush>
+				<LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+					<GradientStop Color="#FFA3AEB9" />
+					<GradientStop Color="#FF8399A9" Offset="0.375" />
+					<GradientStop Color="#FF718597" Offset="0.375" />
+					<GradientStop Color="#FFABADB3" Offset="1" />
+				</LinearGradientBrush>
+			</DatePicker.BorderBrush>
+		</DatePicker>
 		<TextBlock Grid.Row="3" Grid.Column="1" x:Name="txt_paisFalecimento" Text="País*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="10,0,0,0" Opacity="0.2" />
 		<ComboBox Grid.Row="3" Grid.Column="1" x:Name="input_paisFal" Style="{StaticResource ComboBoxes}" Margin="0,0,50,0" IsEnabled="False">
 			<ComboBox.ItemTemplate>

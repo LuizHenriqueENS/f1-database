@@ -158,6 +158,7 @@ namespace F1 {
                     cmd.Parameters.AddWithValue("@Nome", cidades.Name);
                     cmd.Parameters.AddWithValue("@Id_Pais", cidades.ID_Pais);
                     cmd.ExecuteNonQuery();
+
                 }
             }
             catch (Exception ex) {

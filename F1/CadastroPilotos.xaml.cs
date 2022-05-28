@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Data;
 
 namespace F1 {
     public partial class CadastroPilotos : Window {
@@ -25,35 +26,11 @@ namespace F1 {
             comboBoxPaisLicenca.ItemsSource = ComboBoxPaises.MostrarPaises();
         }
 
-        //private void AbrirPopUp(object sender, RoutedEventArgs e) {
-        //    bool tudoOK = true;
-        //    if (IsTextAllowed(campo_nome.Text)) {
-        //        PopUp("O campo NOME possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        tudoOK = false;
-        //    }
-        //    if (IsTextAllowed(campo_nascimento.Text)) {
-        //        PopUp("O campo LOCAL DO NASCIMENTO possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        tudoOK = false;
-        //    }
-        //    if (IsTextAllowed(campo_licenca.Text)) {
-        //        PopUp("O campo País de Licença possui caracteres inválidos", "Continuar", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        tudoOK = false;
-        //    }
-
-        //    if (tudoOK) {
-        //        MessageBoxResult result = PopUp($"Você deseja cadastrar o piloto '{campo_nome.Text}'?", "Continuar?", MessageBoxButton.YesNo, MessageBoxImage.None);
-        //        if (result == MessageBoxResult.Yes) {
-        //            AdicionarPilotoAoBanco();
-        //        }
-        //    }
-
-
-        //}
-
         private MessageBoxResult PopUp(string messageBoxText, string caption, MessageBoxButton msgBtn, MessageBoxImage msgImg) {
             MessageBoxButton button = msgBtn;
             MessageBoxImage icon = msgImg;
             MessageBoxResult result;
+
 
             result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
             return result;
@@ -86,12 +63,59 @@ namespace F1 {
         private void AdicionarPilotoAoBanco(object sender, RoutedEventArgs e) {
             Piloto p = new();
             if ((bool)isFalecido.IsChecked) {
-                
+                if (input_cidadeFalecimento.Text == "") {
+                    PopUp("O campo 'Cidade de falecimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (input_dataObito.Text == "") {
+
+                    PopUp("O campo 'Data de Óbito' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (input_paisFal.Text == "") {
+
+                    PopUp("O campo 'País de falecimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+
+                var t1 = DateTime.Parse(input_dataObito.Text);
+                var t2 = DateTime.Parse(dataNascimento.Text);
+                if (t1.Ticks < t2.Ticks) {
+                    PopUp("A data de óbito não pode ser menor que a data de nascimento", "ERRO", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                p = new Piloto(nomeCompleto.Text, nomeProfissional.Text, DateTime.Parse(dataNascimento.Text), comboBox.Text, comboBoxCidade.Text, DateTime.Parse(input_dataObito.Text), input_cidadeFalecimento.Text, falecido, input_paisFal.Text, comboBoxPaisLicenca.Text);
+
             }
             else {
 
+
+                if (nomeCompleto.Text == "") {
+                    PopUp("O campo 'Nome completo' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (nomeProfissional.Text == "") {
+                    PopUp("O campo 'Nome profissional' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (comboBox.Text == "") {
+                    PopUp("O campo 'Nacionalidade' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+
+                if (comboBoxCidade.Text == "") {
+                    PopUp("O campo 'Cidade de nascimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (dataNascimento.Text == "") {
+                    PopUp("O campo 'Data de nascimento' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                if (comboBoxPaisLicenca.Text == "") {
+                    PopUp("O campo 'País da licença' está vazio", "", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+
+                string nome = nomeCompleto.Text;
+                string nomeProfissionalTxt = nomeProfissional.Text;
+                DateTime dt = DateTime.Parse(dataNascimento.Text);
+                string nacionalidade = comboBox.Text;
+                string cidadeNascimento = comboBoxCidade.Text;
+                string paisDaLicenca = comboBoxPaisLicenca.Text;
+                p = new Piloto(nome, nomeProfissionalTxt, dt, nacionalidade, cidadeNascimento, false, paisDaLicenca);
+
             }
-         //   Banco.AdicionarPiloto(p);
+                Banco.AdicionarPiloto(p);
         }
 
 
@@ -113,6 +137,12 @@ namespace F1 {
             base.OnClosing(e);
         }
 
+        private void NomeCompleto_LostFocus(object sender, RoutedEventArgs e) {
+            TextBox? textBox = sender as TextBox;
+            if (Banco.listaDePilotos(textBox.Text)){
+                PopUp($"O piloto '{textBox.Text}' consta no banco de dados", "Piloto já registrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
     }
 
 }

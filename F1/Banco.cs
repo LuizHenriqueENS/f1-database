@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
@@ -34,26 +35,37 @@ namespace F1 {
             }
         }
 
-        public static void Caminho() {
-            Console.WriteLine(caminhoBanco + nomeBanco);
-        }
-
         public static void AdicionarPiloto(Piloto piloto) {
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL, NASCIMENTO, NACIONALIDADE, CIDADE_NAS, FALECIMENTO, PAISDELICENCA, PAIS_FAL, CIDADE_FAL, ESTAVIVO, CHAVEIDENTIFICACAO)" +
-                        " values (@Nome, @Nome_Profissional, @Nascimento, @Nacionalidade, @Cidade_Nas, @Falecimento, @Pais_de_Licenca, @Pais_Fal, @Cidade_Fal, @EstaVivo, @Chave)";
-                    cmd.Parameters.AddWithValue("@Nome", piloto.Nome);
-                    cmd.Parameters.AddWithValue("@Nome_Profissional", piloto.NomeProfissional);
-                    cmd.Parameters.AddWithValue("@Nascimento", piloto.DataDoNascimento);
-                    cmd.Parameters.AddWithValue("@Nacionalidade", piloto.Nacionalidade);
-                    cmd.Parameters.AddWithValue("@Cidade_Nas", piloto.CidadeNascimento);
-                    cmd.Parameters.AddWithValue("@Falecimento", piloto.DataDoFalecimento);
-                    cmd.Parameters.AddWithValue("@Pais_Fal", piloto.PaisFalecimento);
-                    cmd.Parameters.AddWithValue("@Cidade_Fal", piloto.CidadeFalecimento);
-                    cmd.Parameters.AddWithValue("@EstaVivo", piloto.Falecido);
-                    cmd.Parameters.AddWithValue("@Chave", piloto.ChaveIdentificacao);
+                    cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL, NASCIMENTO, NACIONALIDADE," +
+                        " CIDADE_NAS, PAISDELICENCA, ESTAVIVO, CHAVEIDENTIFICACAO, FALECIMENTO, PAIS_FAL, CIDADE_FAL)" +
+                        " VALUES (@Nome, @Nome_Profissional, @Nascimento, @Nacionalidade, @Cidade_Nas, @Pais_DeLicenca, " +
+                        "@EstaVivo, @Chave, @Falecimento, @Pais_Fal, @Cidade_Fal)";
                     
+                    cmd.Parameters.AddWithValue("@Nome", piloto.Nome);
+                    Console.WriteLine(piloto.Nome);
+                    cmd.Parameters.AddWithValue("@Nome_Profissional", piloto.NomeProfissional);
+                    Console.WriteLine(piloto.NomeProfissional);
+                    cmd.Parameters.AddWithValue("@Nascimento", piloto.DataDoNascimento);
+                    Console.WriteLine(piloto.DataDoNascimento);
+                    cmd.Parameters.AddWithValue("@Nacionalidade", piloto.Nacionalidade);
+                    Console.WriteLine(piloto.Nacionalidade);
+                    cmd.Parameters.AddWithValue("@Cidade_Nas", piloto.CidadeNascimento);
+                    Console.WriteLine(piloto.CidadeNascimento);
+                    cmd.Parameters.AddWithValue("@Pais_DeLicenca", piloto.PaisDeLicenca);
+                    Console.WriteLine(piloto.PaisDeLicenca);
+                    cmd.Parameters.AddWithValue("@EstaVivo", piloto.Falecido);
+                    Console.WriteLine(piloto.Falecido);
+                    
+                    cmd.Parameters.AddWithValue("@Chave", piloto.Identificacao());
+                    Console.WriteLine(piloto.ChaveIdentificacao);
+
+                    if (piloto.DataDoFalecimento.Ticks > 0) {
+                        cmd.Parameters.AddWithValue("@Falecimento", piloto.DataDoFalecimento);
+                        cmd.Parameters.AddWithValue("@Pais_Fal", piloto.PaisFalecimento);
+                        cmd.Parameters.AddWithValue("@Cidade_Fal", piloto.CidadeFalecimento);
+                    }
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -62,5 +74,15 @@ namespace F1 {
             }
         }
 
+        public static bool listaDePilotos(string nome) {
+            bool existeNoBanco = false;
+            var x = ObterTodosPilotos();
+            foreach (DataRow dataRow in x.Rows) {
+                if (dataRow[0].ToString().ToLower() == nome.ToLower()) {
+                    return true;
+                }
+            }
+            return existeNoBanco;
+        }
     }
 }
