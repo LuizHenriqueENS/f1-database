@@ -1,0 +1,54 @@
+﻿<Window x:Class="F1.Tabela"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:F1"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Tabela" Height="640" Width="1440" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="ListView" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Italic" />
+            <Setter Property="Width" Value="auto" />
+            <EventSetter Event="Selected" Handler="ListViewItem_Selected"/>
+            <EventSetter Event="MouseDoubleClick" Handler="ClickDuplok"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="tela">
+        <ListView  Name="tabela" HorizontalContentAlignment="Stretch" ItemContainerStyle="{StaticResource ListView }" SelectionMode="Single" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Piloto" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding  Nome}" FontWeight="Bold" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Nome profissional" Width="auto"  DisplayMemberBinding="{Binding NomeProfissional}"/>
+                    <GridViewColumn Header="Data de nasc." Width="150" DisplayMemberBinding="{Binding DataDoNascimento,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    <GridViewColumn Header="País de origem" Width="150" DisplayMemberBinding="{Binding Nacionalidade}"/>
+                    <GridViewColumn Header="Cidade do nascimento" Width="150" DisplayMemberBinding="{Binding CidadeNascimento}"/>
+                    <GridViewColumn Header="País da licença" Width="150" DisplayMemberBinding="{Binding PaisDeLicenca}"/>
+                    <GridViewColumn Header="Falecido?" Width="70" DisplayMemberBinding="{Binding Falecido }"/>
+                    <GridViewColumn Header="Data do falecimento" Width="150" DisplayMemberBinding="{Binding DataDoFalecimento ,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    <GridViewColumn Header="País de falecimento" Width="150" DisplayMemberBinding="{Binding PaisFalecimento}"/>
+                    <GridViewColumn Header="Cidade de falecimento" Width="150" DisplayMemberBinding="{Binding CidadeFalecimento}"/>
+                    <GridViewColumn Header="Chave de Identificação" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding  ChaveIdentificacao}" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+    </Grid>
+</Window>

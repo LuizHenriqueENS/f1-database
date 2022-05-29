@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Net.Http;
 using System.Windows.Controls;
-using System.Linq;
-using System;
 namespace F1 {
     internal class ComboBoxCidades {
 
@@ -16,7 +14,7 @@ namespace F1 {
                 cidades.Add(new Cidades((string?)dr["NAME"], int.Parse(dr["ID_PAIS"].ToString())));
             }
             List<Cidades> filtrado = cidades.FindAll(a => a.ID_Pais == idPais);
-            
+
             return cidades;
 
 

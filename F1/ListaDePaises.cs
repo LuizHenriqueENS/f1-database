@@ -1,13 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1 {
+﻿namespace F1 {
     internal class ListaDePaises {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -52,5 +43,5 @@ namespace F1 {
             EmojiU = emojiU;
         }
     }
-     
+
 }

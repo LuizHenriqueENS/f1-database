@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
@@ -35,24 +34,30 @@ namespace F1 {
             }
         }
 
+        public static void DeletarPiloto(string nome) {
+            using var cmd = ConexaoBanco().CreateCommand();
+            cmd.CommandText = $"DELETE FROM tb_pilotos WHERE NOME = '{nome}'";
+            cmd.ExecuteNonQuery();
+        }
+
         public static void AdicionarPiloto(Piloto p) {
             try {
                 using var cmd = ConexaoBanco().CreateCommand();
                 if (p.Falecido) {
-                cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL, NASCIMENTO, NACIONALIDADE, CIDADE_NAS, FALECIMENTO, PAISDELICENCA, PAIS_FAL, CIDADE_FAL, ESTAVIVO, CHAVEIDENTIFICACAO) VALUES (@Nome, @Nome_profissional, @Nascimento, @Nacionalidade, @Cidade_nascimento, @Falecimento, @Pais_licenca, @Pais_falecimento, @Cidade_falecimento, @Esta_vivo, @Chave)";
-                cmd.Parameters.AddWithValue("@Nome", p.Nome);
-                cmd.Parameters.AddWithValue("@Nome_profissional", p.NomeProfissional);
-                cmd.Parameters.AddWithValue("@Nascimento", p.DataDoNascimento);
-                cmd.Parameters.AddWithValue("@Nacionalidade", p.Nacionalidade);
-                cmd.Parameters.AddWithValue("@Cidade_nascimento", p.CidadeNascimento);
-                cmd.Parameters.AddWithValue("@Falecimento", p.DataDoFalecimento);
-                cmd.Parameters.AddWithValue("@Pais_falecimento", p.PaisFalecimento);
-                cmd.Parameters.AddWithValue("@Cidade_falecimento", p.CidadeFalecimento);
-                cmd.Parameters.AddWithValue("@Pais_licenca", p.PaisDeLicenca);
-                cmd.Parameters.AddWithValue("@Esta_vivo", p.Falecido);
-                cmd.Parameters.AddWithValue("@Chave", p.Identificacao());
-                
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL, NASCIMENTO, NACIONALIDADE, CIDADE_NAS, FALECIMENTO, PAISDELICENCA, PAIS_FAL, CIDADE_FAL, ESTAVIVO, CHAVEIDENTIFICACAO) VALUES (@Nome, @Nome_profissional, @Nascimento, @Nacionalidade, @Cidade_nascimento, @Falecimento, @Pais_licenca, @Pais_falecimento, @Cidade_falecimento, @Esta_vivo, @Chave)";
+                    cmd.Parameters.AddWithValue("@Nome", p.Nome);
+                    cmd.Parameters.AddWithValue("@Nome_profissional", p.NomeProfissional);
+                    cmd.Parameters.AddWithValue("@Nascimento", p.DataDoNascimento);
+                    cmd.Parameters.AddWithValue("@Nacionalidade", p.Nacionalidade);
+                    cmd.Parameters.AddWithValue("@Cidade_nascimento", p.CidadeNascimento);
+                    cmd.Parameters.AddWithValue("@Falecimento", p.DataDoFalecimento);
+                    cmd.Parameters.AddWithValue("@Pais_falecimento", p.PaisFalecimento);
+                    cmd.Parameters.AddWithValue("@Cidade_falecimento", p.CidadeFalecimento);
+                    cmd.Parameters.AddWithValue("@Pais_licenca", p.PaisDeLicenca);
+                    cmd.Parameters.AddWithValue("@Esta_vivo", p.Falecido);
+                    cmd.Parameters.AddWithValue("@Chave", p.Identificacao());
+
+                    cmd.ExecuteNonQuery();
                 }
                 else {
                     cmd.CommandText = "INSERT INTO tb_pilotos(NOME, NOME_PROFISSIONAL," +

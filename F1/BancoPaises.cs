@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
@@ -17,7 +16,7 @@ namespace F1 {
             conexao = new SQLiteConnection("Data Source =" + caminhoBanco + nomeBanco);
             conexao.Open();
             return conexao;
-        } 
+        }
         #endregion
 
         #region Obter todos os paises
@@ -105,6 +104,15 @@ namespace F1 {
             DataTable dt = ObterTodosAsCidades();
             foreach (DataRow dr in dt.Rows) {
                 if (dr["NOME"].ToString().ToLower() == cidade.ToLower()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool FiltrarPaises(string pais) {
+            DataTable dt = ObterTodosOsPaisesPT();
+            foreach (DataRow dr in dt.Rows) {
+                if (dr["NAME"].ToString().ToLower() == pais.ToLower()) {
                     return true;
                 }
             }

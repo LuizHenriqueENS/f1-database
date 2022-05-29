@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net.Http;
 using System.Windows;
 namespace F1 {
     public partial class MainWindow : Window {
@@ -32,7 +29,7 @@ namespace F1 {
             CadastroPilotos? telasAbertas = Application.Current.Windows.OfType<CadastroPilotos>().FirstOrDefault();
 
             if (telasAbertas == null) {
-                CadastroPilotos p = new(); 
+                CadastroPilotos p = new();
                 p.Show();
                 Window? mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 if (mw != null) { mw.Close(); }
