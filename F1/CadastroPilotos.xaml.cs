@@ -46,7 +46,7 @@ namespace F1 {
             input_cidadeFalecimento.IsEnabled = false;
 
             falecido = false;
-        } 
+        }
         #endregion
         #region Campos digitáveis
         private void AdicionarPilotoAoBanco(object sender, RoutedEventArgs e) {
@@ -167,6 +167,7 @@ namespace F1 {
                 PopUp($"O piloto '{textBox.Text}' consta no banco de dados", "Piloto já registrado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 textBox.Text = "";
             }
+
         }
         private void LimparCampos() {
             nomeCompleto.Text = "";
@@ -178,6 +179,7 @@ namespace F1 {
             input_dataObito.Text = "";
             input_paisFal.Text = "";
             input_cidadeFalecimento.Text = "";
+            PopUp("PILOTO ADICIONADO COM SUCESSO!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private ComboBox ParenteCOMBO_BOX(ComboBox? cb) {
             ComboBox? parente = cb.Name switch {
@@ -219,7 +221,7 @@ namespace F1 {
         private void AbrirTabela(object sender, MouseButtonEventArgs e) {
             Tabela tb = new();
             tb.Show();
-          
+
         }
     }
 }

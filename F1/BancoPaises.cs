@@ -41,6 +41,7 @@ namespace F1 {
         #endregion
         #region Obter todos os paisesPT
         public static DataTable ObterTodosOsPaisesPT() {
+            Console.WriteLine(caminhoBanco);
             SQLiteDataAdapter? da = null;
 
             DataTable dt = new DataTable();
