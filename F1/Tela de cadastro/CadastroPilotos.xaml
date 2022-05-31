@@ -34,7 +34,7 @@
 			<BeginStoryboard>
 				<Storyboard>
 					<Storyboard x:Name="myStoryboard">
-						<DoubleAnimation From="30" To="200" Duration="00:00:3"  Storyboard.TargetProperty="Height">
+						<DoubleAnimation From="30" To="200" Duration="00:00:3" Storyboard.TargetProperty="Height">
 							<DoubleAnimation.EasingFunction>
 								<BounceEase Bounces="2" EasingMode="EaseOut" Bounciness="2" />
 							</DoubleAnimation.EasingFunction>
@@ -67,8 +67,8 @@
 		<TextBox Grid.Row="2" x:Name="nomeProfissional" Style="{StaticResource TextBox}" />
 		<TextBlock Grid.Row="3" Text="Data de nascimento*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
         <DatePicker Grid.Row="3" x:Name="dataNascimento" Height="50" HorizontalAlignment="Right" Width="310" SelectedDate="12/31/1900" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" Padding="75,2,2,2" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-        <TextBlock Grid.Row="4" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-        <ComboBox Grid.Row="4" x:Name="comboBox" Style="{StaticResource ComboBoxes}" KeyUp="AtivarCampoCidade" LostFocus="AdicionarPaisAoBD">
+		<TextBlock Grid.Row="4" Text="País da licença*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<ComboBox Grid.Row="4" x:Name="comboBoxPaisLicenca" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
@@ -77,8 +77,8 @@
 				</DataTemplate>
 			</ComboBox.ItemTemplate>
 		</ComboBox>
-		<TextBlock Grid.Row="5" x:Name="cidade" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-		<ComboBox Grid.Row="5" x:Name="comboBoxCidade" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right" LostFocus="AdicionarCidadeAoBD" IsEnabled="False" GotFocus="FiltrarCidades">
+		<TextBlock Grid.Row="5" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+        <ComboBox Grid.Row="5" x:Name="comboBox" Style="{StaticResource ComboBoxes}" KeyUp="AtivarCampoCidade" LostFocus="AdicionarPaisAoBD">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
@@ -87,8 +87,8 @@
 				</DataTemplate>
 			</ComboBox.ItemTemplate>
 		</ComboBox>
-		<TextBlock Grid.Row="6" Text="País da licença*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-		<ComboBox Grid.Row="6" x:Name="comboBoxPaisLicenca" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right">
+		<TextBlock Grid.Row="6" x:Name="cidade" Text="Cidade*" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
+		<ComboBox Grid.Row="6" x:Name="comboBoxCidade" Style="{StaticResource ComboBoxes}" MaxDropDownHeight="25" AllowDrop="False" HorizontalAlignment="Right" LostFocus="AdicionarCidadeAoBD" IsEnabled="False" GotFocus="FiltrarCidades">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">

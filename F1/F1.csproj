@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="close.png" />
+    <None Remove="icons\power off white.png" />
     <None Remove="power off white.png" />
     <None Remove="power-off.png" />
     <None Remove="power_off.png" />
@@ -20,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="close.png" />
-    <Resource Include="power off white.png" />
-    <Resource Include="power-off.png" />
-    <Resource Include="power_off.png" />
+    <Resource Include="icons\close.png" />
+    <Resource Include="icons\power off white.png" />
+    <Resource Include="icons\power-off.png" />
+    <Resource Include="icons\power_off.png" />
   </ItemGroup>
 
 </Project>

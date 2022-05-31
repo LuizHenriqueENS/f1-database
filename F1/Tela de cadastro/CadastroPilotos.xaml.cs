@@ -140,7 +140,7 @@ namespace F1 {
 
         }
         private void AtivarCampoCidade(object sender, KeyEventArgs e) {
-            ComboBox cb = e.Source as ComboBox;
+            ComboBox? cb = e.Source as ComboBox;
             if (cb.Text.Length > 0) {
                 if (cb.Name == "comboBox") {
                     comboBoxCidade.IsEnabled = true;
@@ -179,6 +179,7 @@ namespace F1 {
             input_dataObito.Text = "";
             input_paisFal.Text = "";
             input_cidadeFalecimento.Text = "";
+            isFalecido.IsChecked = false;
             PopUp("PILOTO ADICIONADO COM SUCESSO!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private ComboBox ParenteCOMBO_BOX(ComboBox? cb) {

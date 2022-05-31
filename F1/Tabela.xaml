@@ -36,8 +36,8 @@
                     <GridViewColumn Header="País da licença" Width="150" DisplayMemberBinding="{Binding PaisDeLicenca}"/>
                     <GridViewColumn Header="Falecido?" Width="70" DisplayMemberBinding="{Binding Falecido }"/>
                     <GridViewColumn Header="Data do falecimento" Width="150" DisplayMemberBinding="{Binding DataDoFalecimento ,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <GridViewColumn Header="País de falecimento" Width="150" DisplayMemberBinding="{Binding PaisFalecimento}"/>
-                    <GridViewColumn Header="Cidade de falecimento" Width="150" DisplayMemberBinding="{Binding CidadeFalecimento}"/>
+                    <GridViewColumn Header="País" Width="150" DisplayMemberBinding="{Binding PaisFalecimento}"/>
+                    <GridViewColumn Header="Cidade" Width="150" DisplayMemberBinding="{Binding CidadeFalecimento}"/>
                     <GridViewColumn Header="Chave de Identificação" Width="auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
