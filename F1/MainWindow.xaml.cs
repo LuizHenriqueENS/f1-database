@@ -36,7 +36,7 @@ namespace F1 {
 
             }
             else {
-                Console.WriteLine("Já está aberta");
+                
             }
 
         }

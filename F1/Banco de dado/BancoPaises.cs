@@ -41,7 +41,6 @@ namespace F1 {
         #endregion
         #region Obter todos os paisesPT
         public static DataTable ObterTodosOsPaisesPT() {
-            Console.WriteLine(caminhoBanco);
             SQLiteDataAdapter? da = null;
 
             DataTable dt = new DataTable();
@@ -120,22 +119,6 @@ namespace F1 {
             return false;
         }
 
-        #region AdicionarPaises
-        public static void AdicionarPaises(Paises paises) {
-            try {
-                using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "INSERT INTO tb_paises(ID, T_PAIS, ISO2) values (@Id, @Pais, @Iso2)";
-                    cmd.Parameters.AddWithValue("@Id", paises.Id);
-                    cmd.Parameters.AddWithValue("@Pais", paises.Name);
-                    cmd.Parameters.AddWithValue("@Iso2", paises.Iso2);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex) {
-                Console.WriteLine(ex.StackTrace);
-            }
-        }
-        #endregion
 
         #region AdicionarPaisesPT
         public static void AdicionarPaisesPT(string pais) {

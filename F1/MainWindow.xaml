@@ -72,7 +72,7 @@
 			</Button>
 			<Button HorizontalAlignment="Left" Height="100" Margin="100,535,0,0" VerticalAlignment="Top" Width="100" Click="QuitApp" BorderThickness="0,0,0,0">
 				<Button.Background>
-					<ImageBrush ImageSource="/power off white.png" Stretch="Uniform" />
+					<ImageBrush ImageSource="/Icons/power off white.png" Stretch="Uniform" />
 				</Button.Background>
 			</Button>
 			<!--#endregion-->

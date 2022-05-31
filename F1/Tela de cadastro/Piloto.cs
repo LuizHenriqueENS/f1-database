@@ -77,29 +77,18 @@ namespace F1 {
             ChaveIdentificacao = chave;
         }
 
-
-
         public string Identificacao() {
-            string chave = "";
-
-            string xyz = "";
-            string[] nomes = Nome.Split(" ");
-            string abc = Nome.Substring(0, 3);
-            xyz = nomes[nomes.Length - 1].Length switch {
-                2 => nomes[nomes.Length - 1] + "X",
-                1 => nomes[nomes.Length - 1] + "XY",
-                _ => nomes[nomes.Length - 1].Substring(0, 3),
+            string[] nomes = NomeProfissional.Split(" ");
+            string abc = NomeProfissional[..3];
+            string xyz = nomes[nomes.Length - 1].Length switch {
+                2 => nomes[^1] + "X",
+                1 => nomes[^1] + "XY",
+                _ => nomes[^1][..3],
             };
-            chave = $"{DataDoNascimento?.ToString("yyyy")}{DataDoNascimento?.ToString("MM")}{DataDoNascimento?.ToString("dd")}{xyz.ToUpper()}{abc.ToUpper()}0";
-
-            //chave = DataDoNascimento.Month switch {
-            //    < 9 when DataDoNascimento.Day < 9 => $"{DataDoNascimento.Year}0{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}0",
-            //    > 9 when DataDoNascimento.Day < 9 => $"{DataDoNascimento.Year}{DataDoNascimento.Month}0{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}0",
-            //    < 9 when DataDoNascimento.Day > 9 => $"{DataDoNascimento.Year}0{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}0",
-            //    _ => $"{DataDoNascimento.Year}{DataDoNascimento.Month}{DataDoNascimento.Day}{xyz.ToUpper()}{abc.ToUpper()}0",
-            //};
+            string chave = $"{DataDoNascimento?.ToString("yyyyMMdd")}{xyz.ToUpper()}{abc.ToUpper()}0";
             chave += 1;
             int i = 1;
+
             foreach (DataRow data in Banco.ObterTodosPilotos().Rows) {
                 while (data["CHAVEIDENTIFICACAO"].ToString() == chave) {
                     i++;
