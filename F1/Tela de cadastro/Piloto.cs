@@ -1,4 +1,7 @@
-﻿using System;
+﻿using F1.Equipes;
+using F1.Temporadas.Interface;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace F1 {
@@ -13,11 +16,12 @@ namespace F1 {
         public bool Falecido { get; set; }
         public string? PaisFalecimento { get; set; }
         public string? PaisDeLicenca { get; set; }
+        public string? ChaveIdentificacao { get; set; }
+        public List<Equipe?> Equipes { get; set; }
+        public List<ITemporada?> Temporadas { get; set; }
+        public List<ICorridas?> Corridas { get; set; }
 
-        public string ChaveIdentificacao { get; set; }
-
-        public Piloto() {
-        }
+        public Piloto() { }
 
         public Piloto(string? nome) {
             Nome = nome;
