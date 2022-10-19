@@ -1,6 +1,9 @@
-﻿using System;
+﻿using F1.Temporadas;
+using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+
 namespace F1 {
     public partial class MainWindow : Window {
 
@@ -39,6 +42,21 @@ namespace F1 {
                 
             }
 
+        }
+
+        private void AbrirTemporadas(object sender, RoutedEventArgs e) {
+            SistemaDePontuacao sp = new();
+            sp.Show();
+        }
+
+        private void AbrirTabela(object sender, RoutedEventArgs e) {
+            Tabela tb = new();
+            tb.Show();
+        }
+
+        private void CadastrarEquipeBD(object sender, RoutedEventArgs e) {
+            CadastrarEquipe equipe = new CadastrarEquipe();
+            equipe.ShowDialog();
         }
     }
 }

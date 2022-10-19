@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="F1.Temporadas.SistemaDePontuacao"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:F1.Temporadas"
+    mc:Ignorable="d"
+    Title="SistemaDePontuacao"
+    Height="450"
+    Width="500"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="textos" TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <Label
+                Content="Cadastrar sistema de pontuação"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontStyle="Italic" />
+            <StackPanel>
+                <Label
+                    Content="TEMPORADA"
+                    Style="{StaticResource textos}" />
+                <TextBox
+                    Height="30"
+                    Width="200" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label Content="Pontos por Posição"/>
+                    <TextBox HorizontalAlignment="Center" Height="200" Width="100" FontSize="24" Text="6;7;" TextWrapping="Wrap" HorizontalContentAlignment="Center"
+                         />
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

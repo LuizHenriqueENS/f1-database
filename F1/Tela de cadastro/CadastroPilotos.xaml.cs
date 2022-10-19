@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows; // window
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -70,7 +71,7 @@ namespace F1 {
                 }
                 else {
                     p = new Piloto(nomeCompleto.Text.Trim(), nomeProfissional.Text.Trim(), DateTime.Parse(dataNascimento.Text), comboBox.Text.Trim(), comboBoxCidade.Text.Trim(),
-                        DateTime.Parse(input_dataObito.Text), input_cidadeFalecimento.Text.Trim(), falecido, input_paisFal.Text.Trim(), comboBoxPaisLicenca.Text.Trim());
+                    DateTime.Parse(input_dataObito.Text), input_cidadeFalecimento.Text.Trim(), falecido, input_paisFal.Text.Trim(), comboBoxPaisLicenca.Text.Trim());
                     Banco.AdicionarPiloto(p);
                     LimparCampos();
                 }
@@ -219,10 +220,5 @@ namespace F1 {
             return result;
         }
 
-        private void AbrirTabela(object sender, MouseButtonEventArgs e) {
-            Tabela tb = new();
-            tb.Show();
-
-        }
     }
 }

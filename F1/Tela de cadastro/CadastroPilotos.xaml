@@ -123,6 +123,6 @@
 		</ComboBox>
 		<Button Content="Cadastrar" FontSize="45" FontWeight="Black" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Right" Width="310" Click="AdicionarPilotoAoBanco" />
 		<TextBlock Text="* Campos obrigatórios" Grid.Row="7" Grid.RowSpan="2" FontSize="20" Margin="0,32,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-        <TextBlock Text="Abrir banco de pilotos" Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" FontSize="20" Margin="0,32,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" MouseLeftButtonDown="AbrirTabela" />
+       
 	</Grid>
 </Window>
