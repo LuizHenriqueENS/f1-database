@@ -7,7 +7,7 @@ namespace F1 {
         private static SQLiteConnection conexao;
 
         private static string caminho = Environment.CurrentDirectory;
-        private static string nomeBanco = "banco_paises.db";
+        private static string nomeBanco = "banco.db";
         private static string caminhoBanco = caminho + @"\banco\";
 
 
@@ -87,7 +87,7 @@ namespace F1 {
 
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "SELECT * FROM tb_cidadesPT";
+                    cmd.CommandText = "SELECT * FROM tb_cidades";
                     da = new SQLiteDataAdapter(cmd.CommandText, ConexaoBanco());
                     da.Fill(dt);
                     return dt;
@@ -103,7 +103,7 @@ namespace F1 {
         public static bool FiltrarCidades(string cidade) {
             DataTable dt = ObterTodosAsCidades();
             foreach (DataRow dr in dt.Rows) {
-                if (dr["NOME"].ToString().ToLower() == cidade.ToLower()) {
+                if (dr["NAME"].ToString().ToLower() == cidade.ToLower()) {
                     return true;
                 }
             }
@@ -139,7 +139,7 @@ namespace F1 {
         public static void AdicionarEstados(Estado estados) {
             try {
                 using (var cmd = ConexaoBanco().CreateCommand()) {
-                    cmd.CommandText = "INSERT INTO tb_estado(I_ID, T_NOME, I_ID_PAIS, T_CODIGO_PAIS, I_ISO2) values (@Id, @Nome, @Id_Pais, @Codigo_pais, @Iso2)";
+                    cmd.CommandText = "INSERT INTO tb_estados(I_ID, T_NOME, I_ID_PAIS, T_CODIGO_PAIS, I_ISO2) values (@Id, @Nome, @Id_Pais, @Codigo_pais, @Iso2)";
                     cmd.Parameters.AddWithValue("@Id", estados.ID);
                     cmd.Parameters.AddWithValue("@Nome", estados.Name);
                     cmd.Parameters.AddWithValue("@Id_Pais", estados.Country_Id);

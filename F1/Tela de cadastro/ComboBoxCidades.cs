@@ -26,13 +26,13 @@ namespace F1 {
             return sel + 1;
         }
 
-        public static async void AdicionarAoComboBox() {
+        //public static async void AdicionarAoComboBox() {
 
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-CSCAPI-KEY", "MHBlNDdEMUM3aGJ6UWZIdTdoQU0xaGQweGM4WW13R1NsVzB5WW9uRQ==");
-            string? result = await client.GetStringAsync("https://api.countrystatecity.in/v1/states");
-            var lista = JsonConvert.DeserializeObject<List<Paises>>(result);
+        //    using var client = new HttpClient();
+        //    client.DefaultRequestHeaders.Add("X-CSCAPI-KEY", "MHBlNDdEMUM3aGJ6UWZIdTdoQU0xaGQweGM4WW13R1NsVzB5WW9uRQ==");
+        //    string? result = await client.GetStringAsync("https://api.countrystatecity.in/v1/states");
+        //    var lista = JsonConvert.DeserializeObject<List<Paises>>(result);
 
-        }
+        //}
     }
 }

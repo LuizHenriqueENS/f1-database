@@ -78,7 +78,8 @@
 			</ComboBox.ItemTemplate>
 		</ComboBox>
 		<TextBlock Grid.Row="5" Text="Nacionalidade *" Style="{StaticResource Textos Cadastro de Piloto}" Margin="15,0,0,0" />
-        <ComboBox Grid.Row="5" x:Name="comboBox" Style="{StaticResource ComboBoxes}" KeyUp="AtivarCampoCidade" LostFocus="AdicionarPaisAoBD">
+        <ComboBox Grid.Row="5" x:Name="comboBox" Style="{StaticResource ComboBoxes}" KeyUp="AtivarCampoCidade" LostFocus="AdicionarPaisAoBD"
+            >
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">

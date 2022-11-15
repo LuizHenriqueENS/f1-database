@@ -114,6 +114,7 @@ namespace F1 {
             }
         }
         private void AdicionarCidadeAoBD(object sender, RoutedEventArgs e) {
+
             ComboBox? cb = e.Source as ComboBox;
             ComboBox? parente = ParenteCOMBO_BOX(cb);
             if (!BancoPaises.FiltrarCidades(cb.Text) && cb.Text != "" && cb.Text.Length > 2) {
@@ -125,6 +126,7 @@ namespace F1 {
                     cb.Text = "";
                 }
             }
+
         }
         private void AdicionarPaisAoBD(object sender, RoutedEventArgs e) {
             ComboBox? cb = e.Source as ComboBox;
@@ -151,16 +153,21 @@ namespace F1 {
                 }
             }
         }
+
+
         private void FiltrarCidades(object sender, RoutedEventArgs e) {
+
             ComboBox? cb = e.Source as ComboBox;
             List<string> lista = new();
             ComboBox? parente = ParenteCOMBO_BOX(cb);
             foreach (DataRow dr in BancoPaises.ObterTodosAsCidades().Rows) {
-                if (dr["PAIS"].ToString() == parente.Text) {
+                if (dr["ID_PAIS"].ToString() == parente.Text) {
                     lista.Add(dr["NOME"].ToString());
                 }
             }
             cb.ItemsSource = lista;
+
+
         }
         private void NomeCompleto_LostFocus(object sender, RoutedEventArgs e) {
             TextBox? textBox = sender as TextBox;

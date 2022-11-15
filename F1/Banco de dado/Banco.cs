@@ -8,7 +8,7 @@ namespace F1 {
         private static SQLiteConnection conexao;
 
         private static string caminho = Environment.CurrentDirectory;
-        private static string nomeBanco = "banco_pilotos.db";
+        private static string nomeBanco = "banco.db";
         private static string caminhoBanco = caminho + @"\banco\";
 
 
